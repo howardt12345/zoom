@@ -1,3 +1,6 @@
+.flutter-plugins
+.flutter-plugins-dependencies
+
 # See https://www.dartlang.org/guides/libraries/private-files
 
 # Files and directories created by pub
@@ -21,6 +24,3 @@ doc/api/
 *.js.map
 
 .idea/
-
-.flutter-plugins
-.flutter-plugins-dependencies

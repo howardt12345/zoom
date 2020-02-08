@@ -21,18 +21,24 @@ class Profile extends Object {
 class Client extends Profile {
   List<Item> favoriteItems;
   List<dynamic> addresses;
+  String defaultAddress;
 
   Client({
     String name,
     String email,
     String phone,
+    String photoUrl,
+    this.defaultAddress,
     this.favoriteItems = const [],
     this.addresses = const [],
   }) : super(
     name: name,
     email: email,
     phone: phone,
+    photoUrl: photoUrl,
   );
+
+  List<String> addressesAsString() => addresses.map((e) => e.toString()).toList();
 }
 
 class Driver extends Profile {

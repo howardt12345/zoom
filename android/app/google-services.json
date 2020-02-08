@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "450735791318",
+    "firebase_url": "https://uottahack-3-project.firebaseio.com",
+    "project_id": "uottahack-3-project",
+    "storage_bucket": "uottahack-3-project.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:450735791318:android:24d9808f611697612abd77",
+        "android_client_info": {
+          "package_name": "com.howardt12345.zoom"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "450735791318-9arbq46231250lc6iqrva3eaj5qcr0jh.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.howardt12345.zoom",
+            "certificate_hash": "6f950079908b610fd0cfa0a7c2322377de21c70a"
+          }
+        },
+        {
+          "client_id": "450735791318-895l7irksmbo07cg2sf94qr4u4ubvg72.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDWiPYSfvYWjJMpK2shTBLsUXtrRZS5wwY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "450735791318-895l7irksmbo07cg2sf94qr4u4ubvg72.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

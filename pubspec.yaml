@@ -22,10 +22,17 @@ dependencies:
 
 
   cloud_firestore: any
+  dio: any
+  enum_to_string: any
+  flutter_facebook_login: any
   firebase_auth: any
   firebase_database: any
   firebase_messaging: any
+  firebase_storage: any
   geocoder: any
+  google_sign_in: any
+  path: any
+  path_provider: any
   shared_preferences: any
 
   # The following adds the Cupertino Icons font to your application.
@@ -79,3 +86,7 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+  assets:
+    - assets/images/g-logo.png
+    - assets/images/f-logo-c.png
+    - assets/images/f-logo-w.png

@@ -1,8 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e206fd17-b7a1-4b69-ab58-a1596e72a98b" name="Default Changelist" comment="">
+    <list default="true" id="5abb4297-72ab-4057-9140-bb7b67553c1e" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/android/app/google-services.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/android/app/src/main/res/values/strings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/android/key.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/images/f-logo-c.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/images/f-logo-w.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/images/g-logo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/components/decoration.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/ui/login/state_select.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/ui/login/utils/auth.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/utils/fade_animation_route.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/utils/scroll_behavior.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.flutter-plugins" beforeDir="false" afterPath="$PROJECT_DIR$/.flutter-plugins" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.flutter-plugins-dependencies" beforeDir="false" afterPath="$PROJECT_DIR$/.flutter-plugins-dependencies" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/main_dart.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/runConfigurations/main_dart.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/src/main/java/com/howardt12345/zoom/MainActivity.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/android/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/zoom_android.iml" beforeDir="false" afterPath="$PROJECT_DIR$/android/zoom_android.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/components/classes.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/components/classes.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/generated_plugin_registrant.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/generated_plugin_registrant.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/main.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/ui/login/loginmain.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/ui/login/loginmain.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/ui/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/ui/main.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -20,8 +46,8 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectId" id="1XV9z6aN1NAlo9yBkk6J6SbDPnq" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+  <component name="ProjectId" id="1XVtl0T5qZ2lFbqianZHUKEgncC" />
+  <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
   <component name="ProjectViewState">
@@ -30,23 +56,20 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
-    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="dart.analysis.tool.window.force.activate" value="false" />
     <property name="io.flutter.reload.alreadyRun" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/lib/ui/login" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/lib/utils" />
     <property name="settings.editor.selected.configurable" value="configurable.group.language" />
     <property name="show.migrate.to.gradle.popup" value="false" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Shared\Projects\Github\zoom\lib\ui\login" />
-      <recent name="C:\Shared\Projects\Github\zoom\lib\ui\store" />
-      <recent name="C:\Shared\Projects\Github\zoom\lib\ui\client" />
-      <recent name="C:\Shared\Projects\Github\zoom\lib\ui\driver" />
+      <recent name="C:\Shared\Projects\Github\zoom\lib\utils" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Shared\Projects\Github\zoom\lib\ui\login\components" />
+      <recent name="C:\Shared\Projects\Github\zoom" />
+      <recent name="C:\Shared\Projects\Github\zoom\lib" />
     </key>
   </component>
   <component name="RunManager">
@@ -72,33 +95,30 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="e206fd17-b7a1-4b69-ab58-a1596e72a98b" name="Default Changelist" comment="" />
-      <created>1581120654476</created>
+      <changelist id="5abb4297-72ab-4057-9140-bb7b67553c1e" name="Default Changelist" comment="" />
+      <created>1581143237431</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1581120654476</updated>
+      <updated>1581143237431</updated>
     </task>
     <servers />
   </component>
-  <component name="VcsManagerConfiguration">
-    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-  </component>
   <component name="WindowStateProjectService">
-    <state width="1323" height="188" key="GridCell.Tab.0.bottom" timestamp="1581129659781">
+    <state width="1323" height="53" key="GridCell.Tab.0.bottom" timestamp="1581151230479">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="188" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1581129659781" />
-    <state width="1323" height="188" key="GridCell.Tab.0.center" timestamp="1581129659781">
+    <state width="1323" height="53" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1581151230479" />
+    <state width="1323" height="53" key="GridCell.Tab.0.center" timestamp="1581151230479">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="188" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1581129659781" />
-    <state width="1323" height="188" key="GridCell.Tab.0.left" timestamp="1581129659780">
+    <state width="1323" height="53" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1581151230479" />
+    <state width="1323" height="53" key="GridCell.Tab.0.left" timestamp="1581151230478">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="188" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1581129659780" />
-    <state width="1323" height="188" key="GridCell.Tab.0.right" timestamp="1581129659781">
+    <state width="1323" height="53" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1581151230478" />
+    <state width="1323" height="53" key="GridCell.Tab.0.right" timestamp="1581151230479">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="188" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1581129659781" />
+    <state width="1323" height="53" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1581151230479" />
   </component>
 </project>

@@ -1,5 +1,14 @@
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+
+class User {
+  FirebaseUser user;
+  User({this.user});
+  get uid => user.uid ?? '';
+  get name => user.displayName;
+  get email => user.email;
+}
 
 class Object {
   String id;
@@ -8,6 +17,7 @@ class Object {
 
 class Profile extends Object {
   String name, email, phone;
+
   Profile({
     this.name,
     this.email,
@@ -19,6 +29,7 @@ class Profile extends Object {
 class Client extends Profile {
   List<Item> favoriteItems;
   List<String> addresses;
+
   Client({
     String name,
     String email,
@@ -36,6 +47,7 @@ class Driver extends Profile {
   bool available;
   double rating;
   String licensePlate;
+
   Driver({
     String name,
     String email,
@@ -55,6 +67,7 @@ class Store extends Profile {
   double rating;
   List<String> hours;
   List<Item> items;
+
   Store({
     String name,
     String email,
@@ -74,6 +87,7 @@ class Item extends Object {
   String name, description;
   double price, rating;
   bool available;
+
   Item({
     this.name,
     this.description,
@@ -87,6 +101,7 @@ class Order extends Object {
   Client client;
   Item item;
   Driver driver;
+
   Order({
     this.client,
     this.item,

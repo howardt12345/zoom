@@ -132,7 +132,7 @@ class _LoginPageState extends State<LoginPage> {
       child: new RichText(
         text: new TextSpan(
           text: 'Logo Here',
-          style: Theme.of(context).textTheme.bodyText2.copyWith(
+          style: Theme.of(context).textTheme.body2.copyWith(
             fontSize: fontSize*2,
           ),
         ),
@@ -160,8 +160,8 @@ class _LoginPageState extends State<LoginPage> {
         child: new FlatButton(
           child: new Text('LOGIN'),
           onPressed: signUp ? () => setState(() => signUp = false) : null,
-          disabledTextColor: Theme.of(context).textTheme.bodyText2.color,
-          textColor: Theme.of(context).textTheme.bodyText2.color.withAlpha(125),
+          disabledTextColor: Theme.of(context).textTheme.body2.color,
+          textColor: Theme.of(context).textTheme.body2.color.withAlpha(125),
         ),
         decoration: !signUp ? outlineDecoration(context) : null,
       ),
@@ -170,8 +170,8 @@ class _LoginPageState extends State<LoginPage> {
         child: new FlatButton(
           child: new Text('SIGN UP'),
           onPressed: !signUp ? () => setState(() => signUp = true) : null,
-          disabledTextColor: Theme.of(context).textTheme.bodyText2.color,
-          textColor: Theme.of(context).textTheme.bodyText2.color.withAlpha(125),
+          disabledTextColor: Theme.of(context).textTheme.body2.color,
+          textColor: Theme.of(context).textTheme.body2.color.withAlpha(125),
         ),
         decoration: signUp ? outlineDecoration(context) : null,
       ),
@@ -194,7 +194,7 @@ class _LoginPageState extends State<LoginPage> {
               controller: _nameController,
               decoration: new InputDecoration.collapsed(hintText: "Name"),
               keyboardType: TextInputType.text,
-              style: Theme.of(context).textTheme.bodyText2.copyWith(
+              style: Theme.of(context).textTheme.body2.copyWith(
                 fontSize: 16.0,
               ),
             ),
@@ -212,7 +212,7 @@ class _LoginPageState extends State<LoginPage> {
               controller: _emailController,
               decoration: new InputDecoration.collapsed(hintText: "Email"),
               keyboardType: TextInputType.emailAddress,
-              style: Theme.of(context).textTheme.bodyText2.copyWith(
+              style: Theme.of(context).textTheme.body2.copyWith(
                 fontSize: 16.0,
               ),
             ),
@@ -232,7 +232,7 @@ class _LoginPageState extends State<LoginPage> {
               obscureText: true,
               autocorrect: false,
               keyboardType: TextInputType.text,
-              style: Theme.of(context).textTheme.bodyText2.copyWith(
+              style: Theme.of(context).textTheme.body2.copyWith(
                 fontSize: 16.0,
               ),
             ),
@@ -252,7 +252,7 @@ class _LoginPageState extends State<LoginPage> {
               obscureText: true,
               autocorrect: false,
               keyboardType: TextInputType.text,
-              style: Theme.of(context).textTheme.bodyText2.copyWith(
+              style: Theme.of(context).textTheme.body2.copyWith(
                 fontSize: 16.0,
               ),
             ),
@@ -264,7 +264,7 @@ class _LoginPageState extends State<LoginPage> {
           child: new RichText(
             text: new TextSpan(
               text: errorMessage,
-              style: Theme.of(context).textTheme.bodyText2.copyWith(
+              style: Theme.of(context).textTheme.body2.copyWith(
                   fontSize: 14.0,
                   color: Colors.red
               ),

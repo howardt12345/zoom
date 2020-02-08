@@ -73,8 +73,8 @@ class _StateSelectPageState extends State<StateSelectPage> {
         borderRadius: new BorderRadius.circular(12.0),
         side: BorderSide(
           color: _pageState == state
-              ? Theme.of(context).textTheme.bodyText2.color
-              : Theme.of(context).textTheme.bodyText2.color.withAlpha(50)
+              ? Theme.of(context).textTheme.body2.color
+              : Theme.of(context).textTheme.body2.color.withAlpha(50)
         )
       ),
       child: Text(
@@ -92,7 +92,7 @@ class _StateSelectPageState extends State<StateSelectPage> {
     child: FlatButton(
       child: Text(
         "CONFIRM",
-        style: Theme.of(context).textTheme.bodyText2.copyWith(
+        style: Theme.of(context).textTheme.body2.copyWith(
           fontSize: 16.0
         ),
       ),

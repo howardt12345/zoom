@@ -52,7 +52,7 @@ class _ShoppingCartState extends State<ShoppingCart> {
                     ),
                     Text(
                       'CART',
-                      style: Theme.of(context).textTheme.subtitle1.copyWith(fontWeight: FontWeight.w600),
+                      style: Theme.of(context).textTheme.subhead.copyWith(fontWeight: FontWeight.w600),
                     ),
                     const SizedBox(width: 16.0),
                     Text('${widget.manager.length} ITEMS'),
@@ -80,8 +80,8 @@ class ShoppingCartSummary extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final TextStyle smallAmountStyle = Theme.of(context).textTheme.bodyText2;
-    final TextStyle largeAmountStyle = Theme.of(context).textTheme.headline4;
+    final TextStyle smallAmountStyle = Theme.of(context).textTheme.body2;
+    final TextStyle largeAmountStyle = Theme.of(context).textTheme.display1;
     final NumberFormat formatter = NumberFormat.simpleCurrency(
       decimalDigits: 2,
       locale: Localizations.localeOf(context).toString(),
@@ -234,7 +234,7 @@ class ShoppingCartRow extends StatelessWidget {
                             ),
                             Text(
                               item.name,
-                              style: localTheme.textTheme.subtitle1.copyWith(fontWeight: FontWeight.w600),
+                              style: localTheme.textTheme.subhead.copyWith(fontWeight: FontWeight.w600),
                             ),
                           ],
                         ),

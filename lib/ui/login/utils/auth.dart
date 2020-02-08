@@ -177,7 +177,7 @@ Future<Null> saveUser(FirebaseUser user, SignInMethod method, {String displayNam
 
           Firestore.instance.collection('users').document(user.uid).setData({
             'email': user.email,
-            'displayName': user.displayName,
+            'name': user.displayName,
             'photoUrl': downloadUrl ?? null,
             'signUpDate': DateTime.now().toString(),
             'signInMethod': method.toString().split('.')[1],
@@ -191,7 +191,7 @@ Future<Null> saveUser(FirebaseUser user, SignInMethod method, {String displayNam
 
           Firestore.instance.collection('users').document(user.uid).setData({
             'email': user.email,
-            'displayName': displayName,
+            'name': displayName,
             'photoUrl': null,
             'signUpDate': DateTime.now().toString(),
             'signInMethod': method.toString().split('.')[1],

@@ -133,7 +133,7 @@ class _LoginPageState extends State<LoginPage> {
       child: Container(
         padding: EdgeInsets.all(48.0),
         child: Image.asset(
-            "assets/images/zoom-logo.png"
+          "assets/images/zoom-logo.png"
         ),
       )
       /*new RichText(

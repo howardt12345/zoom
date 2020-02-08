@@ -1,4 +1,5 @@
 
+import 'package:place_picker/place_picker.dart';
 import 'package:scoped_model/scoped_model.dart';
 
 
@@ -21,8 +22,9 @@ class ClientManager extends Model {
       name: data['name'],
       email: data['email'],
       phone: data['phone'] ?? '',
-      addresses: data['addresses'] ?? const [],
-      favoriteItems: data['fav'] ?? const [],
+      photoUrl: user.photoUrl ?? null,
+      addresses: data['addresses'] ?? [],
+      favoriteItems: data['fav'] ?? [],
     );
     return null;
   }
@@ -78,6 +80,15 @@ class ClientManager extends Model {
   clearCart() {
     cart.clear();
     notifyListeners();
+  }
+
+  addAddress(LocationResult result) async {
+    client.addresses.add(result.name);
+
+    var user = await FirebaseAuth.instance.currentUser();
+    Firestore.instance.collection('users').document(user.uid).updateData({
+      'addresses': client.addresses,
+    });
   }
 
   get name => client.name;

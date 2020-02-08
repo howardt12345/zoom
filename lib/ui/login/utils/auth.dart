@@ -149,9 +149,9 @@ Future<Null> signOut() async {
 
   app.user = null;
 
-  signOutWithEmail();
-  signOutWithGoogle();
-  signOutWithFacebook();
+  await signOutWithEmail();
+  await signOutWithGoogle();
+  await signOutWithFacebook();
 }
 
 Future<Null> saveUser(FirebaseUser user, SignInMethod method, {String displayName = ''}) async {

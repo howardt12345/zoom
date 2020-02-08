@@ -30,10 +30,12 @@ dependencies:
   firebase_messaging: any
   firebase_storage: any
   geocoder: any
+  google_maps_flutter: any
   google_sign_in: any
   intl: any
   path: any
   path_provider: any
+  place_picker: any
   scoped_model: any
   shared_preferences: any
 

@@ -34,8 +34,8 @@ class Client extends Profile {
     String name,
     String email,
     String phone,
-    this.favoriteItems,
-    this.addresses,
+    this.favoriteItems = const [],
+    this.addresses = const [],
   }) : super(
     name: name,
     email: email,
@@ -84,13 +84,14 @@ class Store extends Profile {
 }
 
 class Item extends Object {
-  String name, description;
+  String name, category, description;
   double price, rating;
   bool available;
 
   Item({
     this.name,
     this.description,
+    this.category,
     this.price,
     this.available,
     @required String id,

@@ -2,14 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5abb4297-72ab-4057-9140-bb7b67553c1e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/lib/ui/client/client_manager.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.flutter-plugins-dependencies" beforeDir="false" afterPath="$PROJECT_DIR$/.flutter-plugins-dependencies" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/ui/client/clientmain.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/ui/client/client_main.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/ui/driver/drivermain.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/ui/driver/driver_main.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/ui/login/loginmain.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/ui/login/login_main.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/ui/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/ui/main.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/ui/store/storemain.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/ui/store/store_main.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/components/classes.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/components/classes.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/ui/client/client_manager.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/ui/client/client_manager.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

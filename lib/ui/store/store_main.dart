@@ -16,14 +16,39 @@ class StorePage extends StatefulWidget {
 class _StorePageState extends State<StorePage> {
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
 
-  StoreManager storeManager = new StoreManager();
+  bool loading = true;
+  StoreManager storeManager = StoreManager();
+
+  void initState() {
+    super.initState();
+    storeManager.init().then((value) => setState(() {
+      loading = false;
+      storeManager.addOrder(Client(
+        name: "Amanda Plant",
+        email: "plant.ethan@gmail.com",
+        phone: "2267914365",
+      ), List<Item>(), Driver(
+        name: "John Doe",
+        email: "bbbb@gmail.com",
+        phone: "1234567890"
+      ), "2387587435743");
+      storeManager.orders[0].items.add(Item(
+        id: "1",
+        description: "This is a demo item",
+        image: "https://picsum.photos/250?image=9",
+        name: "Demo Item 1",
+        price: 19.95,
+        rating: 4.15,
+      ));
+    }));
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         key: _scaffoldKey,
         appBar: AppBar(
-          title: const Text('Demo Store'),
+          title: Text(!loading ? storeManager.store.name : "Loading..."),
           leading: IconButton(
             icon: Icon(Icons.store),
             onPressed: () => _scaffoldKey.currentState.openDrawer(),
@@ -59,11 +84,12 @@ class _StorePageState extends State<StorePage> {
         ),
         body: Container(
           padding: EdgeInsets.all(5),
-          child: ListView.builder(
+          child: !loading ? ListView.builder(
             itemBuilder: _buildOrdersList,
             itemCount: storeManager.orders.length,
-          ),
-        ));
+          ) : Center(child: CircularProgressIndicator(),),
+        ),
+    );
   }
 
   Widget _buildOrdersList(BuildContext context, int index) {

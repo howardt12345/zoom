@@ -1,4 +1,5 @@
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 class Object {
@@ -98,11 +99,20 @@ class Item extends Object {
   }) : super(id);
 }
 
+enum ORDER_STATUS {
+  PENDING,
+  CONFIRMED,
+  IN_TRANSIT,
+  DELIVERED,
+  CANCELLED
+}
+
 class Order extends Object {
   Client client;
   List<Item> items;
   Driver driver;
   double price;
+  ORDER_STATUS status;
 
   Order({
     this.client,
@@ -110,6 +120,21 @@ class Order extends Object {
     this.driver,
     @required String id,
   }) : super(id) {
-    price = 19.95;
+    status = ORDER_STATUS.PENDING;
+  }
+
+  String getStatus() {
+    switch (status) {
+      case ORDER_STATUS.PENDING:
+        return "Pending";
+      case ORDER_STATUS.CONFIRMED:
+        return "Confirmed";
+      case ORDER_STATUS.IN_TRANSIT:
+        return "In transit";
+      case ORDER_STATUS.DELIVERED:
+        return "Delivered";
+      case ORDER_STATUS.CANCELLED:
+        return "Cancelled";
+    }
   }
 }

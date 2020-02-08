@@ -27,6 +27,7 @@ class _StorePageState extends State<StorePage> {
         name: "Amanda Plant",
         email: "plant.ethan@gmail.com",
         phone: "2267914365",
+        photoUrl: "https://cdn.discordapp.com/attachments/451168261007081523/675163357296459807/Snapchat-2067555994.jpg"
       ), List<Item>(), Driver(
         name: "John Doe",
         email: "bbbb@gmail.com",

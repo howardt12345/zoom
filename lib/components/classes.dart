@@ -75,11 +75,12 @@ class Store extends Profile {
 }
 
 class Item extends Object {
-  String name, category, description, image;
+  String name, category, description, image, id;
   double price, rating;
   bool available;
 
   Item({
+    @required this.id,
     this.name,
     this.description,
     this.category,

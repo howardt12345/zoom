@@ -3,6 +3,9 @@
 import 'package:flutter/material.dart';
 
 import 'package:zoom/ui/login/utils/auth.dart' as auth;
+import 'package:zoom/utils/fade_animation_route.dart';
+
+import '../main.dart';
 
 class ClientPage extends StatefulWidget {
   @override
@@ -19,6 +22,7 @@ class _ClientPageState extends State<ClientPage> {
             child: Text("Sign Out"),
             onPressed: () {
               auth.signOut();
+              Navigator.of(context).push(FadeAnimationRoute(builder: (context) => MainPage()));
             },
           ),
         ),

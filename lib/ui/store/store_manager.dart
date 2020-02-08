@@ -23,7 +23,11 @@ class StoreManager {
     ));
 
     orders[0].items.add(new Item(
-      price: 19.95
+        name: "Test Item",
+        description: "A test item",
+        stock: 10,
+        price: 19.95,
+        id: "5482754382"
     ));
 
     orders.add(new Order(
@@ -43,6 +47,9 @@ class StoreManager {
     ));
 
     orders[1].items.add(new Item(
+        name: "Test Item",
+        description: "A test item",
+        stock: 10,
         price: 19.95
     ));
   }

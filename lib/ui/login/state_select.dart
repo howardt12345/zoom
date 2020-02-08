@@ -106,13 +106,9 @@ class _StateSelectPageState extends State<StateSelectPage> {
         child: FutureBuilder(
           future: FirebaseAuth.instance.currentUser(),
           builder: (context, snapshot) {
-            if(snapshot.hasData) {
-              if(snapshot.data != null) {
-                user = snapshot.data;
-                print(user.displayName);
-              } else {
-                print('No user');
-              }
+            if(snapshot.hasData && snapshot.data != null) {
+              user = snapshot.data;
+              print(user.displayName);
               return Column(
                 children: <Widget>[
                   Expanded(

@@ -100,13 +100,16 @@ class Item extends Object {
 
 class Order extends Object {
   Client client;
-  Item item;
+  List<Item> items;
   Driver driver;
+  double price;
 
   Order({
     this.client,
-    this.item,
+    this.items,
     this.driver,
     @required String id,
-  }) : super(id);
+  }) : super(id) {
+    price = 19.95;
+  }
 }

@@ -36,7 +36,7 @@ class _StateSelectPageState extends State<StateSelectPage> {
       child: new RichText(
         text: new TextSpan(
           text: 'Hello ${user.displayName ?? 'null'}!',
-          style: Theme.of(context).textTheme.bodyText2.copyWith(
+          style: Theme.of(context).textTheme.body2.copyWith(
             fontSize: 20.0*2,
           ),
         ),
@@ -52,7 +52,7 @@ class _StateSelectPageState extends State<StateSelectPage> {
           child: RichText(
             text: TextSpan(
               text: "Are you a:",
-              style: Theme.of(context).textTheme.subtitle1.copyWith(
+              style: Theme.of(context).textTheme.subhead.copyWith(
                 fontSize: 20.0
               ),
             ),
@@ -79,7 +79,7 @@ class _StateSelectPageState extends State<StateSelectPage> {
       ),
       child: Text(
         EnumToString.parse(state),
-        style: Theme.of(context).textTheme.bodyText2,
+        style: Theme.of(context).textTheme.body2,
       ),
       onPressed: () => setState(() => this._pageState = state),
     ),

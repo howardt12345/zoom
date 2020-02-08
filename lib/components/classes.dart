@@ -1,14 +1,5 @@
 
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-
-class User {
-  FirebaseUser user;
-  User({this.user});
-  get uid => user.uid ?? '';
-  get name => user.displayName;
-  get email => user.email;
-}
 
 class Object {
   String id;
@@ -84,7 +75,7 @@ class Store extends Profile {
 }
 
 class Item extends Object {
-  String name, category, description;
+  String name, category, description, image;
   double price, rating;
   bool available;
 
@@ -93,6 +84,7 @@ class Item extends Object {
     this.description,
     this.category,
     this.price,
+    this.image,
     this.available,
     @required String id,
   }) : super(id);

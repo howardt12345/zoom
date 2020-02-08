@@ -31,8 +31,10 @@ dependencies:
   firebase_storage: any
   geocoder: any
   google_sign_in: any
+  intl: any
   path: any
   path_provider: any
+  scoped_model: any
   shared_preferences: any
 
   # The following adds the Cupertino Icons font to your application.

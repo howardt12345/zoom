@@ -42,6 +42,7 @@ class _LoginPageState extends State<LoginPage> {
 
   googleButton() => new Container(
       height: 40.0,
+      width: 120,
       decoration: outlineDecoration(context),
       child: new FlatButton(
         onPressed: () async {
@@ -129,14 +130,20 @@ class _LoginPageState extends State<LoginPage> {
       )
     ),*/
     child: new Center(
-      child: new RichText(
+      child: Container(
+        padding: EdgeInsets.all(48.0),
+        child: Image.asset(
+            "assets/images/zoom-logo.png"
+        ),
+      )
+      /*new RichText(
         text: new TextSpan(
           text: 'Logo Here',
           style: Theme.of(context).textTheme.body2.copyWith(
             fontSize: fontSize*2,
           ),
         ),
-      ),
+      )*/,
     ),
   );
 
@@ -288,12 +295,12 @@ class _LoginPageState extends State<LoginPage> {
                 padding: EdgeInsets.symmetric(horizontal: 8.0),
               ),
             ),
-            new Expanded(
+            /*new Expanded(
               child: new Container(
                 child: facebookButton(),
                 padding: EdgeInsets.symmetric(horizontal: 8.0),
               ),
-            ),
+            ),*/
           ],
         )
       ],

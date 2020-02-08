@@ -95,8 +95,14 @@ class _ClientPageState extends State<ClientPage> {
       body: SafeArea(
         child: !loading ? Stack(
           children: <Widget>[
-            Container(
-              child: Text(manager.name),
+            Center(
+              child: FlatButton(
+                child: Text("Sign Out"),
+                onPressed: () {
+                  auth.signOut();
+                  Navigator.of(context).push(FadeAnimationRoute(builder: (context) => MainPage()));
+                },
+              ),
             ),
             Align(
               alignment: Alignment.bottomRight,

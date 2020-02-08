@@ -2,6 +2,8 @@
 
 import 'package:flutter/material.dart';
 
+import 'package:zoom/ui/login/utils/auth.dart' as auth;
+
 class DriverPage extends StatefulWidget {
   @override
   _DriverPageState createState() => _DriverPageState();
@@ -13,7 +15,12 @@ class _DriverPageState extends State<DriverPage> {
     return Scaffold(
       body: SafeArea(
         child: Center(
-          child: Text("Driver Page"),
+          child: FlatButton(
+            child: Text("Sign Out"),
+            onPressed: () {
+              auth.signOut();
+            },
+          ),
         ),
       ),
     );

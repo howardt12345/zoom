@@ -2,34 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5abb4297-72ab-4057-9140-bb7b67553c1e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/android/app/google-services.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/app/src/main/res/values/strings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/key.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/images/f-logo-c.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/images/f-logo-w.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/images/g-logo.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/components/decoration.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/ui/login/state_select.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/ui/login/utils/auth.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/utils/fade_animation_route.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/utils/scroll_behavior.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.flutter-plugins" beforeDir="false" afterPath="$PROJECT_DIR$/.flutter-plugins" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/ui/client/client_manager.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.flutter-plugins-dependencies" beforeDir="false" afterPath="$PROJECT_DIR$/.flutter-plugins-dependencies" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/main_dart.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/runConfigurations/main_dart.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/app/src/main/java/com/howardt12345/zoom/MainActivity.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/android/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/zoom_android.iml" beforeDir="false" afterPath="$PROJECT_DIR$/android/zoom_android.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/components/classes.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/components/classes.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/generated_plugin_registrant.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/generated_plugin_registrant.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/main.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/ui/login/loginmain.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/ui/login/loginmain.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/ui/client/clientmain.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/ui/client/client_main.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/ui/driver/drivermain.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/ui/driver/driver_main.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/ui/login/loginmain.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/ui/login/login_main.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/ui/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/ui/main.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/ui/store/storemain.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/ui/store/store_main.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -104,21 +84,21 @@
     <servers />
   </component>
   <component name="WindowStateProjectService">
-    <state width="1323" height="53" key="GridCell.Tab.0.bottom" timestamp="1581151230479">
+    <state width="1323" height="148" key="GridCell.Tab.0.bottom" timestamp="1581154326793">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="53" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1581151230479" />
-    <state width="1323" height="53" key="GridCell.Tab.0.center" timestamp="1581151230479">
+    <state width="1323" height="148" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1581154326793" />
+    <state width="1323" height="148" key="GridCell.Tab.0.center" timestamp="1581154326793">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="53" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1581151230479" />
-    <state width="1323" height="53" key="GridCell.Tab.0.left" timestamp="1581151230478">
+    <state width="1323" height="148" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1581154326793" />
+    <state width="1323" height="148" key="GridCell.Tab.0.left" timestamp="1581154326793">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="53" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1581151230478" />
-    <state width="1323" height="53" key="GridCell.Tab.0.right" timestamp="1581151230479">
+    <state width="1323" height="148" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1581154326793" />
+    <state width="1323" height="148" key="GridCell.Tab.0.right" timestamp="1581154326793">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="53" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1581151230479" />
+    <state width="1323" height="148" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1581154326793" />
   </component>
 </project>

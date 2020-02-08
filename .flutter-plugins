@@ -1,4 +1,11 @@
 # This is a generated file; do not edit or check into version control.
+cloud_firestore=C:\\Shared\\Projects\\flutter\\beta\\.pub-cache\\hosted\\pub.dartlang.org\\cloud_firestore-0.13.1\\
+firebase_auth=C:\\Shared\\Projects\\flutter\\beta\\.pub-cache\\hosted\\pub.dartlang.org\\firebase_auth-0.15.4\\
+firebase_auth_web=C:\\Shared\\Projects\\flutter\\beta\\.pub-cache\\hosted\\pub.dartlang.org\\firebase_auth_web-0.1.2\\
+firebase_core=C:\\Shared\\Projects\\flutter\\beta\\.pub-cache\\hosted\\pub.dartlang.org\\firebase_core-0.4.3+3\\
+firebase_core_web=C:\\Shared\\Projects\\flutter\\beta\\.pub-cache\\hosted\\pub.dartlang.org\\firebase_core_web-0.1.1+2\\
+firebase_database=C:\\Shared\\Projects\\flutter\\beta\\.pub-cache\\hosted\\pub.dartlang.org\\firebase_database-3.1.1\\
+firebase_messaging=C:\\Shared\\Projects\\flutter\\beta\\.pub-cache\\hosted\\pub.dartlang.org\\firebase_messaging-6.0.9\\
 geocoder=C:\\Shared\\Projects\\flutter\\beta\\.pub-cache\\hosted\\pub.dartlang.org\\geocoder-0.2.1\\
 shared_preferences=C:\\Shared\\Projects\\flutter\\beta\\.pub-cache\\hosted\\pub.dartlang.org\\shared_preferences-0.5.6+1\\
 shared_preferences_macos=C:\\Shared\\Projects\\flutter\\beta\\.pub-cache\\hosted\\pub.dartlang.org\\shared_preferences_macos-0.0.1+4\\

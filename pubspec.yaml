@@ -20,6 +20,11 @@ dependencies:
   flutter:
     sdk: flutter
 
+
+  cloud_firestore: any
+  firebase_auth: any
+  firebase_database: any
+  firebase_messaging: any
   geocoder: any
   shared_preferences: any
 

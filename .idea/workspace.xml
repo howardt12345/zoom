@@ -2,14 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e206fd17-b7a1-4b69-ab58-a1596e72a98b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/lib/components/classes.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/ui/login/loginmain.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.flutter-plugins" beforeDir="false" afterPath="$PROJECT_DIR$/.flutter-plugins" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.flutter-plugins-dependencies" beforeDir="false" afterPath="$PROJECT_DIR$/.flutter-plugins-dependencies" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/ui/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/ui/main.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -46,13 +39,14 @@
     <property name="show.migrate.to.gradle.popup" value="false" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Shared\Projects\Github\zoom\lib\ui\login" />
+      <recent name="C:\Shared\Projects\Github\zoom\lib\ui\store" />
+      <recent name="C:\Shared\Projects\Github\zoom\lib\ui\client" />
+      <recent name="C:\Shared\Projects\Github\zoom\lib\ui\driver" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Shared\Projects\Github\zoom\lib\ui\login\components" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Shared\Projects\Github\zoom\lib\ui\store" />
-      <recent name="C:\Shared\Projects\Github\zoom\lib\ui\login" />
-      <recent name="C:\Shared\Projects\Github\zoom\lib\ui\driver" />
     </key>
   </component>
   <component name="RunManager">

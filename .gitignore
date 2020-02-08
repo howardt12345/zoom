@@ -21,3 +21,6 @@ doc/api/
 *.js.map
 
 .idea/
+
+.flutter-plugins
+.flutter-plugins-dependencies

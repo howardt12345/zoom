@@ -173,10 +173,12 @@ Future<Null> saveUser(FirebaseUser user, SignInMethod method, {String displayNam
 
           _tasks.add(uploadTask);
 
+          var downloadUrl = await ref.getDownloadURL();
+
           Firestore.instance.collection('users').document(user.uid).setData({
             'email': user.email,
             'displayName': user.displayName,
-            'photoUrl': ref.getDownloadURL(),
+            'photoUrl': downloadUrl ?? null,
             'signUpDate': DateTime.now().toString(),
             'signInMethod': method.toString().split('.')[1],
           });

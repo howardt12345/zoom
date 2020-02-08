@@ -17,14 +17,20 @@ class _ClientPageState extends State<ClientPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: Center(
-          child: FlatButton(
-            child: Text("Sign Out"),
-            onPressed: () {
-              auth.signOut();
-              Navigator.of(context).push(FadeAnimationRoute(builder: (context) => MainPage()));
-            },
-          ),
+        child: CustomScrollView(
+          slivers: <Widget>[
+            SliverAppBar(
+
+              leading: IconButton(
+                icon: Icon(Icons.person),
+                onPressed: () {
+                  auth.signOut();
+                  Navigator.of(context).push(FadeAnimationRoute(builder: (context) => MainPage()));
+                },
+              ),
+              title: Text("Hi, !"),
+            )
+          ],
         ),
       ),
     );

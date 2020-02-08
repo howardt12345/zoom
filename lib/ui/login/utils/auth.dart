@@ -88,15 +88,13 @@ Future<Null> signOutWithGoogle() async {
 
 Future<FirebaseUser> signInWithFacebook() async {
 
-  final FacebookLoginResult result = await _facebookSignIn.logIn(['email']);
+  final FacebookLoginResult result = await _facebookSignIn.logIn(['email', 'public_profile']);
 
-  final accessToken = result.accessToken.token;
   if (result.status == FacebookLoginStatus.loggedIn) {
-    final facebookAuthCred = FacebookAuthProvider.getCredential(
-        accessToken: accessToken);
+    FacebookAccessToken myToken = result.accessToken;
+    AuthCredential credential = FacebookAuthProvider.getCredential(accessToken: myToken.token);
 
-    final AuthResult authResult = await _auth.signInWithCredential(facebookAuthCred);
-
+    final AuthResult authResult = await _auth.signInWithCredential(credential);
     final FirebaseUser user = authResult.user;
 
     assert(user != null);

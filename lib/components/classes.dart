@@ -7,19 +7,20 @@ class Object {
 }
 
 class Profile extends Object {
-  String name, email, phone;
+  String name, email, phone, photoUrl;
 
   Profile({
     this.name,
     this.email,
     this.phone,
+    this.photoUrl,
     @required String id
   }) : super(id);
 }
 
 class Client extends Profile {
   List<Item> favoriteItems;
-  List<String> addresses;
+  List<dynamic> addresses;
 
   Client({
     String name,

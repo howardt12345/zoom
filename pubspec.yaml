@@ -20,7 +20,7 @@ dependencies:
   flutter:
     sdk: flutter
 
-
+  badges: any
   cloud_firestore: any
   dio: any
   enum_to_string: any

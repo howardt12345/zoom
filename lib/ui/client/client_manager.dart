@@ -11,7 +11,8 @@ double _shippingCostPerItem = 1.0;
 
 class ClientManager extends Model {
   Client client;
-  List<Item> cart;
+  Map<String, int> cart = <String, int>{};
+  List<Item> items = [];
 
   Future<dynamic> init() async {
     var user = await FirebaseAuth.instance.currentUser();
@@ -26,17 +27,44 @@ class ClientManager extends Model {
     return null;
   }
 
-  void addToCart(Item item) {
-    cart.add(item);
-    notifyListeners();
-  }
-  void removeFromCart(Item item) {
-    cart.remove(item);
+  // Adds a product to the cart.
+  void addProductToCart(Item item) {
+    print(item.id);
+    if (!cart.containsKey(item.id)) {
+      cart[item.id] = 1;
+      items.add(item);
+    } else {
+      cart[item.id]++;
+    }
+
     notifyListeners();
   }
 
+  // Removes an item from the cart.
+  void removeItemFromCart(Item item) {
+    if (cart.containsKey(item.id)) {
+      if (cart[item.id] == 1) {
+        cart.remove(item.id);
+        items.removeWhere((element) => element.id == item.id);
+      } else {
+        cart[item.id]--;
+      }
+    }
+
+    notifyListeners();
+  }
+
+  getItem(String id) {
+    return items.firstWhere((element) => element.id == id);
+  }
+
+  get cartItems => cart.keys.toList();
+  get length => cart.values.fold(0, (p, c) => p + c);
+
   double get subtotalCost {
-    return cart.fold(0, (p, c) => p + c.price);
+    return cart.keys
+        .map((String id) => getItem(id).price * cart[id])
+        .fold(0.0, (double sum, var e) => sum + e);
   }
 
   double get shippingCost {

@@ -20,14 +20,6 @@ class _StateSelectPageState extends State<StateSelectPage> {
 
   void initState() {
     super.initState();
-    FirebaseAuth.instance.currentUser().then((firebaseUser) {
-      if(firebaseUser != null) {
-        user = firebaseUser;
-        print(user.displayName);
-      } else {
-        print('No user');
-      }
-    });
   }
 
   nameBanner() => Container(
@@ -111,17 +103,34 @@ class _StateSelectPageState extends State<StateSelectPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: Column(
-          children: <Widget>[
-            Expanded(
-              flex: 2,
-              child: nameBanner(),
-            ),
-            Expanded(
-              flex: 3,
-              child: statePicker(),
-            ),
-          ],
+        child: FutureBuilder(
+          future: FirebaseAuth.instance.currentUser(),
+          builder: (context, snapshot) {
+            if(snapshot.hasData) {
+              if(snapshot.data != null) {
+                user = snapshot.data;
+                print(user.displayName);
+              } else {
+                print('No user');
+              }
+              return Column(
+                children: <Widget>[
+                  Expanded(
+                    flex: 2,
+                    child: nameBanner(),
+                  ),
+                  Expanded(
+                    flex: 3,
+                    child: statePicker(),
+                  ),
+                ],
+              );
+            } else {
+              return Center(
+                child: Text(snapshot.error.toString()),
+              );
+            }
+          },
         ),
       ),
     );

@@ -2,6 +2,8 @@
 
 import 'package:flutter/material.dart';
 
+import 'package:zoom/ui/login/utils/auth.dart' as auth;
+
 class ClientPage extends StatefulWidget {
   @override
   _ClientPageState createState() => _ClientPageState();
@@ -13,7 +15,12 @@ class _ClientPageState extends State<ClientPage> {
     return Scaffold(
       body: SafeArea(
         child: Center(
-          child: Text("Client Page"),
+          child: FlatButton(
+            child: Text("Sign Out"),
+            onPressed: () {
+              auth.signOut();
+            },
+          ),
         ),
       ),
     );

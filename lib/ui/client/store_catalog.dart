@@ -96,7 +96,7 @@ class _StoreCatalogPageState extends State<StoreCatalogPage> {
         tmp.add(storeItem(item));
       });
     });
-
+    tmp.add(SizedBox(height: 56.0,));
     return tmp;
   }
 
@@ -138,7 +138,7 @@ class _StoreCatalogPageState extends State<StoreCatalogPage> {
                           widget.store.name,
                           style: TextStyle(
                             color: Colors.white,
-                            fontSize: 16.0,
+                            fontSize: 20.0,
                           )
                       ),
                       background: Image.network(

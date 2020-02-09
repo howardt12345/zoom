@@ -154,27 +154,52 @@ class ShoppingCartSummary extends StatelessWidget {
             ),
           ],
         ),
-        cart.length > 0 ? Container(
-          height: 40.0,
-          decoration: outlineDecoration(context),
-          child: FlatButton(
-            onPressed: () {
-              checkout().then((value) {
-                cart.clearCart();
-                Navigator.of(context).pop();
-              });
-            },
-            child: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Icon(Icons.shopping_cart),
-                  Container(
-                    padding: EdgeInsets.symmetric(horizontal: 16.0),
-                    child: Text('CHECKOUT'),
-                  )
-                ]
+        cart.length > 0 ? Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: <Widget>[
+            Container(
+              height: 40.0,
+              decoration: outlineDecoration(context),
+              child: FlatButton(
+                onPressed: () {
+                  checkout().then((value) {
+                    cart.clearCart();
+                    Navigator.of(context).pop();
+                  });
+                },
+                child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Icon(Icons.shopping_cart),
+                      Container(
+                        padding: EdgeInsets.symmetric(horizontal: 16.0),
+                        child: Text('CHECKOUT'),
+                      )
+                    ]
+                ),
+              ),
             ),
-          ),
+            Container(
+              height: 40.0,
+              decoration: outlineDecoration(context),
+              child: FlatButton(
+                onPressed: () {
+                  cart.clearCart();
+                  Navigator.of(context).pop();
+                },
+                child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Icon(Icons.delete_sweep),
+                      Container(
+                        padding: EdgeInsets.symmetric(horizontal: 16.0),
+                        child: Text('CLEAR'),
+                      )
+                    ]
+                ),
+              ),
+            )
+          ],
         ) : Container(),
         const SizedBox(height: 16.0),
       ],

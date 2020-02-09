@@ -15,4 +15,5 @@ SplayTreeMap<String, IconData> categories = SplayTreeMap.from({
   'Office': Icons.attach_file,
   'Clothing': Icons.accessibility,
   'Sports': Icons.fitness_center,
+  'Food': Icons.fastfood,
 });

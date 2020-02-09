@@ -36,7 +36,7 @@ class ListingsManager {
           image: itemData['image'],
           name: itemData['name'],
           price: itemData['price'],
-          rating: itemData['rating'],
+          rating: itemData['rating']*1.0,
           stock: itemData['stock'],
         ));
       }

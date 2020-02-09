@@ -73,7 +73,7 @@ class _ClientPageState extends State<ClientPage> {
     child: Text(
       clientManager.client.defaultAddress == null ? "ADD ADDRESS" : clientManager.client.defaultAddress.split(',')[0],
       style: Theme.of(context).textTheme.button.copyWith(
-          fontSize: 12,
+          fontSize: 14,
           color: secondaryColor
       ),
     ),
@@ -221,6 +221,9 @@ class _ClientPageState extends State<ClientPage> {
                     delegate: SliverChildListDelegate(
                         storesList()
                     ),
+                  ),
+                  SliverToBoxAdapter(
+                    child: SizedBox(height: 56.0,),
                   ),
                 ],
               ),

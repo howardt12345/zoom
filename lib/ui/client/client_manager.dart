@@ -40,6 +40,18 @@ class ClientManager extends Model {
     }
   }
 
+  removeAddress(String address) async {
+    client.addresses.remove(address);
+
+    var user = await FirebaseAuth.instance.currentUser();
+    Firestore.instance.collection('users').document(user.uid).updateData({
+      'addresses': client.addresses,
+    });
+    if(client.defaultAddress == address) {
+      client.defaultAddress = null;
+    }
+  }
+
   get name => client.name;
   get email => client.email;
   get phone => client.phone;

@@ -22,6 +22,15 @@ class _SelectAddressPageState extends State<SelectAddressPage> {
       icon: Icon(Icons.location_on),
       color: widget.manager.client.defaultAddress == address ? primaryColor : Theme.of(context).textTheme.button.color,
     ),
+    trailing: IconButton(
+      icon: Icon(Icons.delete_forever),
+      onPressed: () async {
+        await widget.manager.removeAddress(address);
+        setState(() {
+          
+        });
+      },
+    ),
     title: Text(
       address.split(',')[0],
       style: Theme.of(context).textTheme.button.copyWith(
@@ -39,6 +48,7 @@ class _SelectAddressPageState extends State<SelectAddressPage> {
         widget.manager.client.defaultAddress = address;
       });
     },
+
   );
 
   @override
@@ -64,6 +74,9 @@ class _SelectAddressPageState extends State<SelectAddressPage> {
                         )
                     );
                     await widget.manager.addAddress(result);
+                    setState(() {
+
+                    });
                   },
                 )
               ],

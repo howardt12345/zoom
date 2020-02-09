@@ -1,4 +1,6 @@
 
+import 'dart:collection';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
@@ -62,7 +64,7 @@ class Driver extends Profile {
 }
 
 class Store extends Profile {
-  String address, image;
+  String address;
   double rating;
   List<dynamic> hours;
   List<Item> items;
@@ -71,8 +73,8 @@ class Store extends Profile {
     String name,
     String email,
     String phone,
+    String photoUrl,
     this.address,
-    this.image,
     this.rating,
     this.hours,
     this.items,
@@ -80,7 +82,19 @@ class Store extends Profile {
     name: name,
     email: email,
     phone: phone,
+    photoUrl: photoUrl,
   );
+
+  SplayTreeMap<String, List<Item>> itemsByCategory() {
+    SplayTreeMap<String, List<Item>> tmp = SplayTreeMap<String, List<Item>>();
+    for(Item item in items) {
+      if(tmp[item.category] == null) {
+        tmp[item.category] = [];
+      }
+      tmp[item.category].add(item);
+    }
+    return tmp;
+  }
 }
 
 class Item extends Object {

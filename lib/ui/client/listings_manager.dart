@@ -16,7 +16,7 @@ class ListingsManager {
         address: data['address'],
         name: data['name'],
         phone: data['phone'],
-        image: data['image'],
+        photoUrl: data['image'],
         items: [],
         rating: data['rating'],
         hours: data['hours'],
@@ -28,6 +28,7 @@ class ListingsManager {
         var itemData = item.data;
         store.items.add(Item(
           description: itemData['desc'],
+          category: itemData['category'],
           image: itemData['image'],
           name: itemData['name'],
           price: itemData['price'],

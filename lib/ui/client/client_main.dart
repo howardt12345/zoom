@@ -8,10 +8,12 @@ import 'package:transparent_image/transparent_image.dart';
 import 'package:zoom/components/classes.dart';
 import 'package:zoom/components/colors.dart';
 import 'package:zoom/ui/address/select_address.dart';
+import 'package:zoom/ui/client/cart.dart';
 import 'package:zoom/ui/client/category_icon_bar.dart';
 import 'package:zoom/ui/client/client_manager.dart';
 import 'package:zoom/ui/client/listings_manager.dart';
 import 'package:zoom/ui/client/shopping_cart.dart';
+import 'package:zoom/ui/client/store_catalog.dart';
 
 import 'package:zoom/ui/login/utils/auth.dart' as auth;
 import 'package:zoom/utils/fade_animation_route.dart';
@@ -28,6 +30,7 @@ class _ClientPageState extends State<ClientPage> {
   bool loading = true;
   ClientManager clientManager = ClientManager();
   ListingsManager listingsManager = ListingsManager();
+  Cart cart = Cart();
   String address;
 
   void initState() {
@@ -82,12 +85,21 @@ class _ClientPageState extends State<ClientPage> {
         children: <Widget>[
           GestureDetector(
             onTap: () {
-              print("a");
+              Navigator.of(context).push(
+                SlideAnimationRoute(
+                  page: StoreCatalogPage(
+                    cart: cart,
+                    store: e,
+                  ),
+                  offset: Offset(1, 0),
+                  curve: Curves.decelerate,
+                )
+              ).then((value) => setState(() {}));
             },
             child: Container(
               child: FadeInImage.memoryNetwork(
                 placeholder: kTransparentImage,
-                image: e.image,
+                image: e.photoUrl,
                 fit: BoxFit.cover,
               ),
             ),
@@ -214,31 +226,10 @@ class _ClientPageState extends State<ClientPage> {
             ),
             Align(
               alignment: Alignment.bottomRight,
-              child: Container(
-                decoration: new BoxDecoration(
-                  color: Theme.of(context).scaffoldBackgroundColor,
-                  borderRadius: new BorderRadius.only(
-                    topLeft: const Radius.circular(40.0),
-                  )
-                ),
-                padding: EdgeInsets.all(8.0),
-                child: Badge(
-                  badgeColor: primaryColor,
-                  position: BadgePosition.topRight(top: 0, right: 3),
-                  badgeContent: Text('${clientManager.length}'),
-                  child: IconButton(
-                    iconSize: 30.0,
-                    icon: Icon(Icons.add_shopping_cart),
-                    onPressed: () => Navigator.of(context).push(
-                      SlideAnimationRoute(
-                        page: ShoppingCart(manager: clientManager,),
-                        offset: Offset(0, 1),
-                        curve: Curves.decelerate,
-                      )
-                    ),
-                  ),
-                ),
-              ),
+              child: cart.length > 0 ? CartBottomIcon(
+                cart: cart,
+                onClose: () => setState(() {}),
+              ) : Container(),
             ),
           ],
         ) : Center(child: CircularProgressIndicator(),),

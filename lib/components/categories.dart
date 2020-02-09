@@ -12,7 +12,7 @@ SplayTreeMap<String, IconData> categories = SplayTreeMap.from({
   'Travel': Icons.flight_takeoff,
   'Baby': Icons.child_friendly,
   'Jewellery': Icons.watch,
-  'Sports': Icons.fitness_center,
   'Office': Icons.attach_file,
-  'Clothing': Icons.accessibility
+  'Clothing': Icons.accessibility,
+  'Sports': Icons.fitness_center,
 });

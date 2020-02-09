@@ -5,6 +5,7 @@ import 'package:intl/intl.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'package:zoom/components/classes.dart';
 import 'package:zoom/components/decoration.dart';
+import 'package:zoom/ui/client/cart.dart';
 import 'package:zoom/ui/client/client_manager.dart';
 
 
@@ -12,9 +13,9 @@ const double _leftColumnWidth = 60.0;
 
 
 class ShoppingCart extends StatefulWidget {
-  final ClientManager manager;
+  final Cart cart;
 
-  ShoppingCart({this.manager});
+  ShoppingCart({this.cart});
 
   @override
   _ShoppingCartState createState() => _ShoppingCartState();
@@ -22,12 +23,12 @@ class ShoppingCart extends StatefulWidget {
 
 class _ShoppingCartState extends State<ShoppingCart> {
   List<Widget> _createShoppingCartRows() {
-    return widget.manager.cart.keys.map((String id) => ShoppingCartRow(
-      item: widget.manager.getItem(id),
-      quantity: widget.manager.cart[id],
+    return widget.cart.keys.map<Widget>((String id) => ShoppingCartRow(
+      item: widget.cart.getItem(id),
+      quantity: widget.cart.cart[id],
       onRemove: () {
         setState(() {
-          widget.manager.removeItemFromCart(widget.manager.getItem(id));
+          widget.cart.removeItemFromCart(widget.cart.getItem(id));
         });
       },
     ),).toList();
@@ -55,13 +56,13 @@ class _ShoppingCartState extends State<ShoppingCart> {
                       style: Theme.of(context).textTheme.subhead.copyWith(fontWeight: FontWeight.w600),
                     ),
                     const SizedBox(width: 16.0),
-                    Text('${widget.manager.length} ITEMS'),
+                    Text('${widget.cart.length} ITEMS'),
                   ],
                 ),
                 Column(
                   children: _createShoppingCartRows(),
                 ),
-                ShoppingCartSummary(manager: widget.manager,)
+                ShoppingCartSummary(cart: widget.cart,)
               ],
             ),
           ],
@@ -74,9 +75,9 @@ class _ShoppingCartState extends State<ShoppingCart> {
 
 class ShoppingCartSummary extends StatelessWidget {
 
-  const ShoppingCartSummary({this.manager});
+  const ShoppingCartSummary({this.cart});
 
-  final ClientManager manager;
+  final Cart cart;
 
   @override
   Widget build(BuildContext context) {
@@ -103,7 +104,7 @@ class ShoppingCartSummary extends StatelessWidget {
                           child: Text('Subtotal:'),
                         ),
                         Text(
-                          formatter.format(manager.subtotalCost),
+                          formatter.format(cart.subtotalCost),
                           style: smallAmountStyle,
                         ),
                       ],
@@ -115,7 +116,7 @@ class ShoppingCartSummary extends StatelessWidget {
                           child: Text('Delivery Fee:'),
                         ),
                         Text(
-                          formatter.format(manager.shippingCost),
+                          formatter.format(cart.shippingCost),
                           style: smallAmountStyle,
                         ),
                       ],
@@ -127,7 +128,7 @@ class ShoppingCartSummary extends StatelessWidget {
                           child: Text('Tax:'),
                         ),
                         Text(
-                          formatter.format(manager.tax),
+                          formatter.format(cart.tax),
                           style: smallAmountStyle,
                         ),
                       ],
@@ -140,7 +141,7 @@ class ShoppingCartSummary extends StatelessWidget {
                           child: Text('TOTAL'),
                         ),
                         Text(
-                          formatter.format(manager.totalCost),
+                          formatter.format(cart.totalCost),
                           style: largeAmountStyle,
                         ),
                       ],
@@ -152,7 +153,7 @@ class ShoppingCartSummary extends StatelessWidget {
             ),
           ],
         ),
-        manager.length > 0 ? Container(
+        cart.length > 0 ? Container(
           height: 40.0,
           decoration: outlineDecoration(context),
           child: FlatButton(

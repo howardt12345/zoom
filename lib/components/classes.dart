@@ -62,7 +62,7 @@ class Driver extends Profile {
 }
 
 class Store extends Profile {
-  String address;
+  String address, image;
   double rating;
   List<String> hours;
   List<Item> items;
@@ -72,6 +72,7 @@ class Store extends Profile {
     String email,
     String phone,
     this.address,
+    this.image,
     this.rating,
     this.hours,
     this.items,

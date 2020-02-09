@@ -84,7 +84,7 @@ class _ClientPageState extends State<ClientPage> {
             onTap: () {
               print("a");
             },
-            child: Positioned.fill(
+            child: Container(
               child: FadeInImage.memoryNetwork(
                 placeholder: kTransparentImage,
                 image: e.image,

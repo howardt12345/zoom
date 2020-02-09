@@ -1,3 +1,6 @@
+## Zoom Delivery
+Zoom Delivery is our submission to uOttaHack 3. 
+
 ## What is Zoom Delivery?
 Zoom Delivery is a delivery application that connects you with local businesses around you. Orders on Zoom are delivered from nearby locations by couriers, cutting delivery time down drastically. 
 

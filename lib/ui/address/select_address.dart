@@ -27,7 +27,7 @@ class _SelectAddressPageState extends State<SelectAddressPage> {
       onPressed: () async {
         await widget.manager.removeAddress(address);
         setState(() {
-          
+
         });
       },
     ),

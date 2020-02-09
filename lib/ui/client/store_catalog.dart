@@ -100,6 +100,26 @@ class _StoreCatalogPageState extends State<StoreCatalogPage> {
     return tmp;
   }
 
+  Widget storeInfo() => Column(
+    children: <Widget>[
+      SizedBox(height: 8.0,),
+      ListTile(
+        leading: IconButton(
+          icon: Icon(Icons.location_on),
+          color: Theme.of(context).textTheme.button.color,
+        ),
+        title: Text(widget.store.address),
+      ),
+      widget.store.phone != null ? ListTile(
+        leading: IconButton(
+          icon: Icon(Icons.phone),
+          color: Theme.of(context).textTheme.button.color,
+        ),
+        title: Text(widget.store.phone),
+      ) : Container(),
+    ],
+  );
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -126,6 +146,9 @@ class _StoreCatalogPageState extends State<StoreCatalogPage> {
                         fit: BoxFit.cover,
                       )
                   ),
+                ),
+                SliverToBoxAdapter(
+                  child: storeInfo()
                 ),
                 SliverList(
                   delegate: SliverChildListDelegate(

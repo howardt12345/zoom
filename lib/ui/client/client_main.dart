@@ -4,10 +4,13 @@ import 'package:badges/badges.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:place_picker/place_picker.dart';
+import 'package:transparent_image/transparent_image.dart';
 import 'package:zoom/components/classes.dart';
 import 'package:zoom/components/colors.dart';
 import 'package:zoom/ui/address/select_address.dart';
+import 'package:zoom/ui/client/category_icon_bar.dart';
 import 'package:zoom/ui/client/client_manager.dart';
+import 'package:zoom/ui/client/listings_manager.dart';
 import 'package:zoom/ui/client/shopping_cart.dart';
 
 import 'package:zoom/ui/login/utils/auth.dart' as auth;
@@ -23,73 +26,19 @@ class ClientPage extends StatefulWidget {
 
 class _ClientPageState extends State<ClientPage> {
   bool loading = true;
-  ClientManager manager = ClientManager();
+  ClientManager clientManager = ClientManager();
+  ListingsManager listingsManager = ListingsManager();
   String address;
 
   void initState() {
     super.initState();
-    manager.init().then((value) => setState(() {
-      loading = false;
-      manager.addProductToCart(Item(
-        id: "1",
-        description: "This is a demo item",
-        image: "https://picsum.photos/250?image=9",
-        name: "Demo Item 1",
-        price: 19.95,
-        rating: 4.15,
-      ));
-      manager.addProductToCart(Item(
-        id: "2",
-        description: "This is a demo item",
-        image: "https://picsum.photos/250?image=9",
-        name: "Demo Item 2",
-        price: 19.95,
-        rating: 4.15,
-      ));
-      manager.addProductToCart(Item(
-        id: "3",
-        description: "This is a demo item",
-        image: "https://picsum.photos/250?image=9",
-        name: "Demo Item 3",
-        price: 19.95,
-        rating: 4.15,
-        stock: 5,
-      ));
-      manager.addProductToCart(Item(
-        id: "3",
-        description: "This is a demo item",
-        image: "https://picsum.photos/250?image=9",
-        name: "Demo Item 3",
-        price: 19.95,
-        rating: 4.15,
-        stock: 5,
-      ));
-      manager.addProductToCart(Item(
-        id: "3",
-        description: "This is a demo item",
-        image: "https://picsum.photos/250?image=9",
-        name: "Demo Item 3",
-        price: 19.95,
-        rating: 4.15,
-        stock: 5,
-      ));
-      manager.addProductToCart(Item(
-        id: "4",
-        description: "This is a demo item",
-        image: "https://picsum.photos/250?image=9",
-        name: "Demo Item 4",
-        price: 19.95,
-        rating: 4.15,
-      ));
-      manager.addProductToCart(Item(
-        id: "5",
-        description: "This is a demo item",
-        image: "https://picsum.photos/250?image=9",
-        name: "Demo Item 5",
-        price: 19.95,
-        rating: 4.15,
-      ));
-    }));
+    clientManager.init().then((value) {
+      listingsManager.init().then((value) {
+        setState(() {
+          loading = false;
+        });
+      });
+    });
   }
 
   void showPlacePicker() async {
@@ -102,16 +51,23 @@ class _ClientPageState extends State<ClientPage> {
     setState(() {
       this.loading = true;
     });
-    await this.manager.addAddress(result);
+    await this.clientManager.addAddress(result);
     setState(() {
       this.loading = false;
     });
   }
 
-  addAddressButton() => FlatButton(
-    onPressed: () => Navigator.of(context).push(FadeAnimationRoute(builder: (context) => SelectAddressPage(manager: manager,))),
+  selectAddressButton() => FlatButton(
+    onPressed: () => Navigator.of(context).push(
+        FadeAnimationRoute(
+            builder: (context) => SelectAddressPage(manager: clientManager,)
+        )
+    ).then((value) {
+      setState(() {});
+      return null;
+    }),
     child: Text(
-      "ADD ADDRESS",
+      clientManager.client.defaultAddress == null ? "ADD ADDRESS" : clientManager.client.defaultAddress.split(',')[0],
       style: Theme.of(context).textTheme.button.copyWith(
           fontSize: 12,
           color: secondaryColor
@@ -119,23 +75,42 @@ class _ClientPageState extends State<ClientPage> {
     ),
   );
 
-  dropdownButton() => DropdownButton<String>(
-    value: manager.client.addressesAsString()[0],
-    style: TextStyle(
-        color: secondaryColor
+  List<Widget> storesList() => listingsManager.stores.map<Widget>((e) => Container(
+    padding: EdgeInsets.symmetric(horizontal: 16.0),
+    child: Card(
+      child: Column(
+        children: <Widget>[
+          GestureDetector(
+            onTap: () {
+              print("a");
+            },
+            child: Positioned.fill(
+              child: FadeInImage.memoryNetwork(
+                placeholder: kTransparentImage,
+                image: e.image,
+                fit: BoxFit.cover,
+              ),
+            ),
+          ),
+          Container(
+            padding: EdgeInsets.all(8.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                Text(
+                  e.name,
+                  style: Theme.of(context).textTheme.title,
+                ),
+                IconButton(
+                  icon: Icon(Icons.favorite_border),
+                )
+              ],
+            ),
+          ),
+        ],
+      ),
     ),
-    onChanged: (String newValue) {
-      setState(() {
-        address = newValue;
-      });
-    },
-    items: manager.client.addressesAsString().map<DropdownMenuItem<String>>((String value) {
-      return DropdownMenuItem<String>(
-        value: value,
-        child: Text(value),
-      );
-    }).toList(),
-  );
+  )).toList();
 
   @override
   Widget build(BuildContext context) {
@@ -143,71 +118,99 @@ class _ClientPageState extends State<ClientPage> {
       body: SafeArea(
         child: !loading ? Stack(
           children: <Widget>[
-            CustomScrollView(
-              slivers: <Widget>[
-                SliverAppBar(
-                  leading: Padding(
-                    padding: EdgeInsets.all(8.0),
-                    child: new RawMaterialButton(
-                      onPressed: () async {
-                        await auth.signOut();
-                        Navigator.of(context).push(
-                            FadeAnimationRoute(
-                                builder: (context) => MainPage()
-                            )
-                        );
-                      },
-                      child: manager.client.photoUrl == null ? new Icon(
-                        Icons.person,
-                        color: Colors.blue,
-                        size: 35.0,
-                      ) : CircleAvatar(
-                        backgroundImage: NetworkImage(manager.client.photoUrl),
+            RefreshIndicator(
+              onRefresh: () async {
+                setState(() {
+                  loading = true;
+                });
+                clientManager.init().then((value) {
+                  listingsManager.init().then((value) {
+                    setState(() {
+                      loading = false;
+                    });
+                  });
+                });
+              },
+              child: CustomScrollView(
+                slivers: <Widget>[
+                  SliverAppBar(
+                    leading: Padding(
+                      padding: EdgeInsets.all(8.0),
+                      child: new RawMaterialButton(
+                        onPressed: () async {
+                          await auth.signOut();
+                          Navigator.of(context).push(
+                              FadeAnimationRoute(
+                                  builder: (context) => MainPage()
+                              )
+                          );
+                        },
+                        child: clientManager.client.photoUrl == null ? new Icon(
+                          Icons.person,
+                          color: Colors.blue,
+                          size: 35.0,
+                        ) : CircleAvatar(
+                          backgroundImage: NetworkImage(clientManager.client.photoUrl),
+                        ),
+                        shape: new CircleBorder(),
+                        elevation: 0.0,
                       ),
-                      shape: new CircleBorder(),
-                      elevation: 0.0,
                     ),
-                  ),
-                  actions: <Widget>[
-                    IconButton(
-                      icon: Icon(Icons.search),
-                    )
-                  ],
-                  backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-                  bottom: PreferredSize(
-                    preferredSize: Size.fromHeight(112.0),
-                    child: ListTile(
-                      title: RichText(
-                        text: TextSpan(
-                            style: Theme.of(context).textTheme.body1.copyWith(
-                                fontSize: 32.0
-                            ),
-                            text: 'Hi, ${manager.name.split(" ")[0]}!'
+                    actions: <Widget>[
+                      IconButton(
+                        icon: Icon(Icons.search),
+                      )
+                    ],
+                    backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+                    bottom: PreferredSize(
+                      preferredSize: Size.fromHeight(112.0),
+                      child: ListTile(
+                        title: RichText(
+                          text: TextSpan(
+                              style: Theme.of(context).textTheme.body1.copyWith(
+                                  fontSize: 32.0
+                              ),
+                              text: 'Hi, ${clientManager.name.split(" ")[0]}!'
+                          ),
+                        ),
+                        subtitle: Row(
+                          children: <Widget>[
+                            Text("Deliver to: "),
+                            selectAddressButton(),
+                          ],
                         ),
                       ),
-                      subtitle: Row(
-                        children: <Widget>[
-                          Text("Deliver to: "),
-                          manager.addresses.length > 10
-                          ? Container(
-                            child: Column(
-                              mainAxisSize: MainAxisSize.min,
-                              children: <Widget>[
-                                dropdownButton(),
-                              ],
-                            ),
-                          ) : addAddressButton()
-                        ],
+                    ),
+                  ),
+                  SliverToBoxAdapter(
+                    child: Container(
+                      padding: EdgeInsets.symmetric(vertical: 8.0),
+                      height: 64,
+                      child: CategoryIconBar(
+                        onIndexChange: (index) => print(index),
                       ),
                     ),
                   ),
-                ),
-                SliverList(
-                  delegate: SliverChildBuilderDelegate((_, i) {
-                    return ListTile(title: Text("Item ${i}"));
-                  }, childCount: 20),
-                ),
-              ],
+                  SliverToBoxAdapter(
+                    child: Container(
+                      padding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
+                      child: RichText(
+                        text: TextSpan(
+                            style: Theme.of(context).textTheme.body1.copyWith(
+                                fontSize: 20.0
+                            ),
+                            text: 'Stores Near You:'
+                        ),
+                      ),
+                    ),
+                  ),
+                  SliverList(
+                    delegate: SliverChildListDelegate(
+                        storesList()
+                    ),
+                  ),
+                ],
+              ),
             ),
             Align(
               alignment: Alignment.bottomRight,
@@ -222,13 +225,13 @@ class _ClientPageState extends State<ClientPage> {
                 child: Badge(
                   badgeColor: primaryColor,
                   position: BadgePosition.topRight(top: 0, right: 3),
-                  badgeContent: Text('${manager.length}'),
+                  badgeContent: Text('${clientManager.length}'),
                   child: IconButton(
                     iconSize: 30.0,
                     icon: Icon(Icons.add_shopping_cart),
                     onPressed: () => Navigator.of(context).push(
                       SlideAnimationRoute(
-                        page: ShoppingCart(manager: manager,),
+                        page: ShoppingCart(manager: clientManager,),
                         offset: Offset(0, 1),
                         curve: Curves.decelerate,
                       )

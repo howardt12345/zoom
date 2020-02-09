@@ -64,7 +64,7 @@ class Driver extends Profile {
 class Store extends Profile {
   String address, image;
   double rating;
-  List<String> hours;
+  List<dynamic> hours;
   List<Item> items;
 
   Store({

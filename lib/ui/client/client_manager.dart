@@ -83,12 +83,15 @@ class ClientManager extends Model {
   }
 
   addAddress(LocationResult result) async {
-    client.addresses.add(result.name);
+    client.addresses.add(result.formattedAddress);
 
     var user = await FirebaseAuth.instance.currentUser();
     Firestore.instance.collection('users').document(user.uid).updateData({
       'addresses': client.addresses,
     });
+    if(client.defaultAddress == null) {
+      client.defaultAddress = result.formattedAddress;
+    }
   }
 
   get name => client.name;

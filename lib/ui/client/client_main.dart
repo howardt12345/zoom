@@ -38,7 +38,7 @@ class _ClientPageState extends State<ClientPage> {
     clientManager.init().then((value) {
       listingsManager.init().then((value) {
         setState(() {
-          cart = Cart(clientManager.client.id);
+          cart = Cart(clientManager.client.id, clientManager.client.name);
           loading = false;
         });
       });
@@ -98,11 +98,11 @@ class _ClientPageState extends State<ClientPage> {
               ).then((value) => setState(() {}));
             },
             child: Container(
-              child: FadeInImage.memoryNetwork(
+              child: e.photoUrl != null ? FadeInImage.memoryNetwork(
                 placeholder: kTransparentImage,
                 image: e.photoUrl,
                 fit: BoxFit.cover,
-              ),
+              ) : Placeholder(),
             ),
           ),
           Container(

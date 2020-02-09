@@ -128,47 +128,16 @@ enum ORDER_STATUS {
 }
 
 class Order extends Object {
-  Client client;
-  List<Item> items;
-  Driver driver;
+  String clientID, clientName, storeID;
+  Map<String, int> items = Map<String, int>();
   double price;
-  ORDER_STATUS status;
+  ORDER_STATUS status = ORDER_STATUS.PENDING;
 
   Order({
-    this.client,
-    this.items,
-    this.driver,
-    @required String id,
-  }) : super(id) {
-    status = ORDER_STATUS.PENDING;
-  }
-
-  String getStatus() {
-    switch (status) {
-      case ORDER_STATUS.PENDING:
-        return "Pending";
-      case ORDER_STATUS.CONFIRMED:
-        return "Confirmed";
-      case ORDER_STATUS.IN_TRANSIT:
-        return "In transit";
-      case ORDER_STATUS.DELIVERED:
-        return "Delivered";
-      case ORDER_STATUS.CANCELLED:
-        return "Cancelled";
-    }
-  }
-}
-
-class Order_New extends Object {
-  String clientID, storeID;
-  Map<String, int> items;
-  double price;
-
-  Order_New({
     @required String id,
     this.clientID,
+    this.clientName,
     this.storeID,
-    this.items,
     this.price,
   }) : super(id);
 }

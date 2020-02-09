@@ -14,9 +14,7 @@ import 'package:zoom/ui/client/client_main.dart';
 import 'package:zoom/ui/driver/driver_main.dart';
 import 'package:zoom/ui/login/login_main.dart';
 import 'package:zoom/ui/login/state_select.dart';
-import 'package:zoom/ui/store/order.dart';
 import 'package:zoom/ui/store/store_main.dart';
-import 'package:zoom/ui/orders/orders_main.dart';
 
 enum PageState {
   Client,
@@ -45,7 +43,6 @@ class _MainPageState extends State<MainPage> {
     FirebaseAuth.instance.currentUser().then((firebaseUser) {
       if(firebaseUser != null) {
         user = firebaseUser;
-        print(user.displayName);
       } else {
         print('No user');
       }
@@ -118,7 +115,7 @@ class _MainPageState extends State<MainPage> {
             case PageState.Driver:
               return DriverPage();
             case PageState.Store:
-              return OrdersPage();
+              return StorePage();
             case PageState.none:
               return StateSelectPage();
             default:

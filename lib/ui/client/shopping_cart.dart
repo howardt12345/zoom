@@ -190,6 +190,7 @@ class ShoppingCartSummary extends StatelessWidget {
     await Firestore.instance.collection('orders').add({
       'store': cart.items[0].store,
       'client': cart.clientID,
+      'name': cart.clientName,
       'price': cart.totalCost,
       'items': items,
     });
@@ -222,11 +223,11 @@ class ShoppingCartRow extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           SizedBox(
-            width: _leftColumnWidth,
-            child: IconButton(
+            width: onRemove != null ? _leftColumnWidth : 0,
+            child: onRemove != null ? IconButton(
               icon: const Icon(Icons.remove_circle_outline),
               onPressed: onRemove,
-            ),
+            ) : Container(),
           ),
           Expanded(
             child: Padding(

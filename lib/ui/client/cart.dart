@@ -12,11 +12,11 @@ double _salesTaxRate = 0.13;
 double _shippingCostPerItem = 1.0;
 
 class Cart extends Model {
-  String clientID;
+  String clientID, clientName;
   Map<String, int> cart = <String, int>{};
   List<Item> items = [];
 
-  Cart(this.clientID);
+  Cart(this.clientID, this.clientName);
 
   // Adds a product to the cart.
   void addProductToCart(Item item) {

@@ -1,13 +1,21 @@
+
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:zoom/components/classes.dart';
+import 'package:zoom/components/colors.dart';
+import 'package:zoom/ui/client/cart.dart';
+import 'package:zoom/ui/client/client_manager.dart';
+
 
 import 'package:zoom/ui/login/utils/auth.dart' as auth;
-import 'package:zoom/ui/store/order.dart';
+import 'package:zoom/ui/main.dart';
+import 'package:zoom/ui/store/order_details.dart';
 import 'package:zoom/ui/store/store_manager.dart';
 import 'package:zoom/ui/store/store_settings.dart';
 import 'package:zoom/utils/fade_animation_route.dart';
-
-import '../main.dart';
+import 'package:zoom/utils/slide_animation_route.dart';
 
 class StorePage extends StatefulWidget {
   @override
@@ -15,123 +23,230 @@ class StorePage extends StatefulWidget {
 }
 
 class _StorePageState extends State<StorePage> {
-  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
+  ClientManager clientManager = ClientManager();
 
+  List<Order> orders = [];
   bool loading = true;
-  StoreManager storeManager = StoreManager();
+
+  StoreManager storeManager;
 
   void initState() {
     super.initState();
-    storeManager.init().then((value) => setState(() {
-      loading = false;
-      storeManager.addOrder(Client(
-        name: "Amanda Plant",
-        email: "plant.ethan@gmail.com",
-        phone: "2267914365",
-        photoUrl: "https://cdn.discordapp.com/attachments/451168261007081523/675163357296459807/Snapchat-2067555994.jpg"
-      ), List<Item>(), Driver(
-        name: "John Doe",
-        email: "bbbb@gmail.com",
-        phone: "1234567890"
-      ), "2387587435743");
-      storeManager.orders[0].items.add(Item(
-        id: "1",
-        description: "This is a demo item",
-        image: "https://picsum.photos/250?image=9",
-        name: "Demo Item 1",
-        price: 19.95,
-        rating: 4.15,
-        stock: 10
-      ));
-      storeManager.calculateOrderPrice(storeManager.orders[0]);
-    }));
+
+    clientManager.init().then((value) async {
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      String id = prefs.getString('store');
+      storeManager = StoreManager(id: id);
+      await storeManager.init();
+      getOrders().then((value) {
+        setState(() {
+          loading = false;
+        });
+      }).catchError((error) {
+        print(error);
+        prefs.setString('state', '');
+        Navigator.of(context).push(
+            FadeAnimationRoute(
+                builder: (context) => MainPage()
+            )
+        );
+      });
+    });
   }
+
+  Future<void> getOrders() async {
+    orders = [];
+    var snapshot = await Firestore.instance.collection('orders').where('store', isEqualTo: storeManager.id).getDocuments();
+    for(var document in snapshot.documents) {
+      String storeID = document['store'];
+      Order order = Order(
+        storeID: storeID,
+        id: document.documentID,
+        clientID: document['client'],
+        clientName: document['name'],
+        price: document['price'],
+      );
+
+      var items = document['items'];
+      print(items);
+      for(var item in items) {
+        var itemID = item.toString().split(':')[0];
+        var itemQuantity = int.parse(item.toString().split(':')[1]);
+        order.items[itemID] = itemQuantity;
+      }
+
+      orders.add(order);
+    }
+  }
+
+  Widget statusIcon(Order order) {
+    switch(order.status) {
+      case ORDER_STATUS.PENDING:
+        return IconButton(
+          icon: Icon(
+            Icons.check,
+          ),
+          onPressed: () {
+            setState(() {
+              order.status = ORDER_STATUS.CONFIRMED;
+            });
+          },
+        );
+      case ORDER_STATUS.CONFIRMED:
+        return IconButton(
+          icon: Icon(
+            Icons.send,
+            color: primaryColor,
+          ),
+          onPressed: () {
+            setState(() {
+              order.status = ORDER_STATUS.IN_TRANSIT;
+            });
+          },
+        );
+      case ORDER_STATUS.IN_TRANSIT:
+        return IconButton(
+          icon: Icon(
+            Icons.local_shipping,
+            color: secondaryColor,
+          ),
+        );
+      case ORDER_STATUS.DELIVERED:
+        return IconButton(
+          icon: Icon(
+            Icons.local_shipping,
+            color: Colors.green,
+          ),
+        );
+      case ORDER_STATUS.CANCELLED:
+        return IconButton(
+          icon: Icon(
+            Icons.close,
+            color: Colors.red,
+          ),
+        );
+      default:
+        return Container();
+    }
+  }
+
+  Widget orderItem(Order order) {
+    final NumberFormat formatter = NumberFormat.simpleCurrency(
+      decimalDigits: 2,
+      locale: Localizations.localeOf(context).toString(),
+    );
+    return ListTile(
+      title: Text(order.clientName),
+      subtitle: Text(order.id),
+      trailing: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: <Widget>[
+          Text(formatter.format(order.price)),
+          statusIcon(order),
+        ],
+      ),
+      onTap: () {
+        Navigator.of(context).push(SlideAnimationRoute(
+          page: OrderDetailsPage(order),
+          offset: Offset(0, 1),
+          curve: Curves.decelerate,
+        ));
+      },
+    );
+  }
+
+  List<Widget> ordersList() => orders.map((e) => orderItem(e)).toList();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        key: _scaffoldKey,
-        appBar: AppBar(
-          title: Text(!loading ? storeManager.store.name : "Loading..."),
-          leading: IconButton(
-            icon: Icon(Icons.store),
-            onPressed: () => _scaffoldKey.currentState.openDrawer(),
-          ),
-        ),
-        drawer: Drawer(
-          child: ListView(
-            padding: EdgeInsets.all(20),
-            children: <Widget>[
-              ListTile(
-                leading: Icon(Icons.home),
-                title: Text("Home"),
-                onTap: () {
-
-                },
+      body: !loading ? SafeArea(
+        child: RefreshIndicator(
+          onRefresh: () async {
+            setState(() {
+              loading = true;
+            });
+            clientManager.init().then((value) {
+              getOrders().then((value) {
+                setState(() {
+                  loading = false;
+                });
+              });
+            });
+          },
+          child: CustomScrollView(
+            slivers: <Widget>[
+              SliverAppBar(
+                leading: Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: new RawMaterialButton(
+                    onPressed: () async {
+                      await auth.signOut();
+                      Navigator.of(context).push(
+                          FadeAnimationRoute(
+                              builder: (context) => MainPage()
+                          )
+                      );
+                    },
+                    child: clientManager.client.photoUrl == null ? new Icon(
+                      Icons.person,
+                      color: Colors.blue,
+                      size: 35.0,
+                    ) : CircleAvatar(
+                      backgroundImage: NetworkImage(clientManager.client.photoUrl),
+                    ),
+                    shape: new CircleBorder(),
+                    elevation: 0.0,
+                  ),
+                ),
+                backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+                bottom: PreferredSize(
+                  preferredSize: Size.fromHeight(112.0),
+                  child: ListTile(
+                    title: RichText(
+                      text: TextSpan(
+                          style: Theme.of(context).textTheme.body1.copyWith(
+                              fontSize: 32.0
+                          ),
+                          text: 'Hi, ${clientManager.name.split(" ")[0]}!'
+                      ),
+                    ),
+                    trailing: IconButton(
+                      icon: Icon(Icons.settings),
+                      onPressed: () {
+                        Navigator.of(context).push(FadeAnimationRoute(
+                          builder: (context) => StoreSettings(storeManager)
+                        )).then((value) {
+                          setState(() {
+                          });
+                        });
+                      },
+                    ),
+                  ),
+                ),
               ),
-              ListTile(
-                leading: Icon(Icons.settings),
-                title: Text("Settings"),
-                onTap: () {
-                  Navigator.of(context).push(FadeAnimationRoute(builder: (context) => StoreSettings(manager: storeManager)));
-                },
+              SliverToBoxAdapter(
+                child: Container(
+                  padding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
+                  child: RichText(
+                    text: TextSpan(
+                        style: Theme.of(context).textTheme.body1.copyWith(
+                            fontSize: 20.0
+                        ),
+                        text: 'Orders for ${storeManager.store.name}:'
+                    ),
+                  ),
+                ),
               ),
-              ListTile(
-                leading: Icon(Icons.exit_to_app),
-                title: Text("Logout"),
-                onTap: () {
-                  auth.signOut();
-                  Navigator.of(context).push(
-                      FadeAnimationRoute(builder: (context) => MainPage()));
-                },
+              SliverList(
+                delegate: SliverChildListDelegate(
+                   ordersList()
+                ),
               ),
             ],
           ),
         ),
-        body: Container(
-          padding: EdgeInsets.all(5),
-          child: !loading ? ListView.builder(
-            itemBuilder: _buildOrdersList,
-            itemCount: storeManager.orders.length,
-          ) : Center(child: CircularProgressIndicator(),),
-        ),
-    );
-  }
-
-  Widget _buildOrdersList(BuildContext context, int index) {
-    Order order = storeManager.orders[index];
-    return Card(
-      margin: EdgeInsets.all(6),
-      elevation: 4,
-      child: InkWell(
-        onTap: () {
-          Navigator.of(context).push(FadeAnimationRoute(builder: (context) => OrderPage(order: order)));
-        },
-        child: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 5.0, horizontal: 16),
-            child: Row(
-              children: <Widget>[
-                Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: <Widget>[
-                    Text(order.client.name),
-                    SizedBox(height: 10.0),
-                    Text(order.id),
-                  ],
-                ),
-                Spacer(),
-                Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: <Widget>[
-                    Text("\$${order.price.toString()}"),
-                    SizedBox(height: 10.0),
-                    Text(order.items.length.toString()),
-                  ],
-                )
-              ],
-            )
-        ),
-      ),
+      ) : Center(child: CircularProgressIndicator(),),
     );
   }
 }

@@ -25,6 +25,7 @@ dependencies:
   dio: any
   enum_to_string: any
   flutter_facebook_login: any
+  firebase_analytics: any
   firebase_auth: any
   firebase_database: any
   firebase_messaging: any

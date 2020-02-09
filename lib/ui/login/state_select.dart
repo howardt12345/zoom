@@ -1,11 +1,14 @@
 
 import 'package:enum_to_string/enum_to_string.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:zoom/components/decoration.dart';
 import 'package:zoom/ui/main.dart';
+import 'package:zoom/ui/store/pick_store.dart';
+
 import 'package:zoom/utils/fade_animation_route.dart';
 
 FirebaseUser user;
@@ -96,9 +99,16 @@ class _StateSelectPageState extends State<StateSelectPage> {
 
   confirm() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.setString("state", EnumToString.parse(_pageState)).then((value) =>
-        Navigator.of(context).push(FadeAnimationRoute(builder: (context) => MainPage()))
-    );
+    await prefs.setString("state", EnumToString.parse(_pageState));
+
+    FirebaseAnalytics analytics = FirebaseAnalytics();
+    await analytics.setUserProperty(name: 'state', value: EnumToString.parse(_pageState).toLowerCase());
+
+    if(_pageState == PageState.Store) {
+      Navigator.of(context).push(FadeAnimationRoute(builder: (context) => PickStorePage()));
+    } else {
+      Navigator.of(context).push(FadeAnimationRoute(builder: (context) => MainPage()));
+    }
   }
 
   @override

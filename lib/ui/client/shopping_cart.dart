@@ -1,5 +1,6 @@
 
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:scoped_model/scoped_model.dart';
@@ -157,6 +158,12 @@ class ShoppingCartSummary extends StatelessWidget {
           height: 40.0,
           decoration: outlineDecoration(context),
           child: FlatButton(
+            onPressed: () {
+              checkout().then((value) {
+                cart.clearCart();
+                Navigator.of(context).pop();
+              });
+            },
             child: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
@@ -172,6 +179,21 @@ class ShoppingCartSummary extends StatelessWidget {
         const SizedBox(height: 16.0),
       ],
     );
+  }
+
+  Future<void> checkout() async {
+    List<String> items = [];
+    cart.cart.forEach((key, value) {
+      items.add('$key:$value');
+    });
+
+    await Firestore.instance.collection('orders').add({
+      'store': cart.items[0].store,
+      'client': cart.clientID,
+      'price': cart.totalCost,
+      'items': items,
+    });
+    return;
   }
 }
 

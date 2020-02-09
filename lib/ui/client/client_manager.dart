@@ -12,8 +12,10 @@ class ClientManager extends Model {
 
   Future<dynamic> init() async {
     var user = await FirebaseAuth.instance.currentUser();
-    var data = (await Firestore.instance.collection('users').document(user.uid).get()).data;
+    var snapshot = await Firestore.instance.collection('users').document(user.uid).get();
+    var data = snapshot.data;
     client = Client(
+      id: user.uid,
       name: data['name'],
       email: data['email'],
       phone: data['phone'] ?? '',

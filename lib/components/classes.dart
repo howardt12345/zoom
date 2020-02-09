@@ -27,6 +27,7 @@ class Client extends Profile {
   String defaultAddress;
 
   Client({
+    String id,
     String name,
     String email,
     String phone,
@@ -35,6 +36,7 @@ class Client extends Profile {
     this.favoriteItems = const [],
     this.addresses = const [],
   }) : super(
+    id: id,
     name: name,
     email: email,
     phone: phone,
@@ -70,6 +72,7 @@ class Store extends Profile {
   List<Item> items;
 
   Store({
+    String id,
     String name,
     String email,
     String phone,
@@ -79,6 +82,7 @@ class Store extends Profile {
     this.hours,
     this.items,
   }) : super(
+    id: id,
     name: name,
     email: email,
     phone: phone,
@@ -98,7 +102,7 @@ class Store extends Profile {
 }
 
 class Item extends Object {
-  String name, category, description, image;
+  String name, category, description, image, store;
   double price, rating;
   int stock;
 
@@ -108,6 +112,7 @@ class Item extends Object {
     this.description,
     this.category,
     this.price,
+    this.store,
     this.rating,
     this.image,
     this.stock,
@@ -152,4 +157,18 @@ class Order extends Object {
         return "Cancelled";
     }
   }
+}
+
+class Order_New extends Object {
+  String clientID, storeID;
+  Map<String, int> items;
+  double price;
+
+  Order_New({
+    @required String id,
+    this.clientID,
+    this.storeID,
+    this.items,
+    this.price,
+  }) : super(id);
 }

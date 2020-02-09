@@ -5,6 +5,7 @@ import 'package:zoom/components/classes.dart';
 
 class ListingsManager {
   List<Store> stores = [];
+  String storeID;
 
   Future<void> init() async {
     stores = [];
@@ -13,6 +14,7 @@ class ListingsManager {
     for(var document in list) {
       var data = document.data;
       Store store = Store(
+        id: document.documentID,
         address: data['address'],
         name: data['name'],
         phone: data['phone'],
@@ -27,6 +29,8 @@ class ListingsManager {
       for(var item in items) {
         var itemData = item.data;
         store.items.add(Item(
+          id: item.documentID,
+          store: document.documentID,
           description: itemData['desc'],
           category: itemData['category'],
           image: itemData['image'],

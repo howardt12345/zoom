@@ -30,7 +30,7 @@ class _ClientPageState extends State<ClientPage> {
   bool loading = true;
   ClientManager clientManager = ClientManager();
   ListingsManager listingsManager = ListingsManager();
-  Cart cart = Cart();
+  Cart cart;
   String address;
 
   void initState() {
@@ -38,6 +38,7 @@ class _ClientPageState extends State<ClientPage> {
     clientManager.init().then((value) {
       listingsManager.init().then((value) {
         setState(() {
+          cart = Cart(clientManager.client.id);
           loading = false;
         });
       });

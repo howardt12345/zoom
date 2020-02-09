@@ -21,4 +21,20 @@ class StoreManager extends Model {
     orders.add(new Order(client: client, items: items, driver: driver, id: id));
     notifyListeners();
   }
+
+  void updateName(String name) async {
+    store.name = name;
+    Firestore.instance.collection("stores").document("zcBX7jsheLbfgCyqMMiR").updateData({
+      "name": store.name
+    });
+  }
+
+  void calculateOrderPrice(Order order) {
+    double price = 0.00;
+    for (Item item in order.items) {
+      price += item.price;
+    }
+
+    order.price = price;
+  }
 }

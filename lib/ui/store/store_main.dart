@@ -4,6 +4,7 @@ import 'package:zoom/components/classes.dart';
 import 'package:zoom/ui/login/utils/auth.dart' as auth;
 import 'package:zoom/ui/store/order.dart';
 import 'package:zoom/ui/store/store_manager.dart';
+import 'package:zoom/ui/store/store_settings.dart';
 import 'package:zoom/utils/fade_animation_route.dart';
 
 import '../main.dart';
@@ -40,7 +41,9 @@ class _StorePageState extends State<StorePage> {
         name: "Demo Item 1",
         price: 19.95,
         rating: 4.15,
+        stock: 10
       ));
+      storeManager.calculateOrderPrice(storeManager.orders[0]);
     }));
   }
 
@@ -62,14 +65,16 @@ class _StorePageState extends State<StorePage> {
               ListTile(
                 leading: Icon(Icons.home),
                 title: Text("Home"),
-              ),
-              ListTile(
-                leading: Icon(Icons.search),
-                title: Text("Search"),
+                onTap: () {
+
+                },
               ),
               ListTile(
                 leading: Icon(Icons.settings),
                 title: Text("Settings"),
+                onTap: () {
+                  Navigator.of(context).push(FadeAnimationRoute(builder: (context) => StoreSettings(manager: storeManager)));
+                },
               ),
               ListTile(
                 leading: Icon(Icons.exit_to_app),

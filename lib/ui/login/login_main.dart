@@ -20,35 +20,35 @@ class LoginPage extends StatefulWidget {
   });
 
   @override
-  _LoginPageState createState() => new _LoginPageState();
+  _LoginPageState createState() => _LoginPageState();
 }
 class _LoginPageState extends State<LoginPage> {
 
 
-  final TextEditingController _nameController = new TextEditingController();
-  final TextEditingController _emailController = new TextEditingController();
-  final TextEditingController _passController = new TextEditingController();
-  final TextEditingController _confirmPassController = new TextEditingController();
+  final TextEditingController _nameController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passController = TextEditingController();
+  final TextEditingController _confirmPassController = TextEditingController();
 
-  FocusNode _focusNodeName = new FocusNode();
-  FocusNode _focusNodeEmail = new FocusNode();
-  FocusNode _focusNodePass = new FocusNode();
-  FocusNode _focusNodeConfirmPass = new FocusNode();
+  FocusNode _focusNodeName = FocusNode();
+  FocusNode _focusNodeEmail = FocusNode();
+  FocusNode _focusNodePass = FocusNode();
+  FocusNode _focusNodeConfirmPass = FocusNode();
 
-  ScrollController scrollController = new ScrollController();
+  ScrollController scrollController = ScrollController();
 
   bool signUp = false;
   String errorMessage = '';
 
-  googleButton() => new Container(
+  googleButton() => Container(
       height: 40.0,
       width: 120,
       decoration: outlineDecoration(context),
-      child: new FlatButton(
+      child: FlatButton(
         onPressed: () async {
           try {
             Navigator.of(context).push(
-                new FadeAnimationRoute(builder: (context) => LoadingScreen(
+                FadeAnimationRoute(builder: (context) => LoadingScreen(
                   SignInMethod.google,
                 ))
             ).then((onValue) {
@@ -56,7 +56,7 @@ class _LoginPageState extends State<LoginPage> {
               if(onValue == true) {
                 Navigator.of(context).pop();
                 Navigator.of(context).push(
-                    new FadeAnimationRoute(builder: (context) => widget.nextPage)
+                    FadeAnimationRoute(builder: (context) => widget.nextPage)
                 );
               }
             });
@@ -80,14 +80,14 @@ class _LoginPageState extends State<LoginPage> {
         ),
       )
   );
-  facebookButton() => new Container(
+  facebookButton() => Container(
       height: 40.0,
       decoration: outlineDecoration(context),
-      child: new FlatButton(
+      child: FlatButton(
         onPressed: () async {
           try {
             Navigator.of(context).push(
-                new FadeAnimationRoute(builder: (context) => LoadingScreen(
+                FadeAnimationRoute(builder: (context) => LoadingScreen(
                   SignInMethod.facebook,
                 ))
             ).then((onValue) {
@@ -95,7 +95,7 @@ class _LoginPageState extends State<LoginPage> {
               if(onValue == true) {
                 Navigator.of(context).pop();
                 Navigator.of(context).push(
-                    new FadeAnimationRoute(builder: (context) => widget.nextPage)
+                    FadeAnimationRoute(builder: (context) => widget.nextPage)
                 );
               }
             });
@@ -121,7 +121,7 @@ class _LoginPageState extends State<LoginPage> {
       )
   );
 
-  loginBanner() => new Container(
+  loginBanner() => Container(
 /*    decoration: BoxDecoration(
       gradient: LinearGradient(
         begin: Alignment.topCenter,
@@ -129,15 +129,15 @@ class _LoginPageState extends State<LoginPage> {
         colors: [Colors.blue[900], Colors.blue[100]]
       )
     ),*/
-    child: new Center(
+    child: Center(
       child: Container(
         padding: EdgeInsets.all(48.0),
         child: Image.asset(
           "assets/images/zoom-logo.png"
         ),
       )
-      /*new RichText(
-        text: new TextSpan(
+      /*RichText(
+        text: TextSpan(
           text: 'Logo Here',
           style: Theme.of(context).textTheme.body2.copyWith(
             fontSize: fontSize*2,
@@ -159,23 +159,23 @@ class _LoginPageState extends State<LoginPage> {
     ),
   );
 
-  loginSignUpToggle() => new Row(
+  loginSignUpToggle() => Row(
     mainAxisAlignment: MainAxisAlignment.center,
     children: <Widget>[
-      new Container(
+      Container(
         height: 40.0,
-        child: new FlatButton(
-          child: new Text('LOGIN'),
+        child: FlatButton(
+          child: Text('LOGIN'),
           onPressed: signUp ? () => setState(() => signUp = false) : null,
           disabledTextColor: Theme.of(context).textTheme.body2.color,
           textColor: Theme.of(context).textTheme.body2.color.withAlpha(125),
         ),
         decoration: !signUp ? outlineDecoration(context) : null,
       ),
-      new Container(
+      Container(
         height: 40.0,
-        child: new FlatButton(
-          child: new Text('SIGN UP'),
+        child: FlatButton(
+          child: Text('SIGN UP'),
           onPressed: !signUp ? () => setState(() => signUp = true) : null,
           disabledTextColor: Theme.of(context).textTheme.body2.color,
           textColor: Theme.of(context).textTheme.body2.color.withAlpha(125),
@@ -185,39 +185,39 @@ class _LoginPageState extends State<LoginPage> {
     ],
   );
 
-  loginForm() => new Container(
+  loginForm() => Container(
     margin: EdgeInsets.all(16.0),
-    child: new Column(
+    child: Column(
       children: <Widget>[
-        new Container(
-          child: signUp ? new Container(
+        Container(
+          child: signUp ? Container(
             alignment: Alignment.center,
             padding: const EdgeInsets.symmetric(horizontal: 8.0),
             margin: const EdgeInsets.only(bottom: 8.0),
             height: fieldHeight,
             decoration: outlineDecoration(context),
-            child: new TextFormField(
+            child: TextFormField(
               focusNode: _focusNodeName,
               controller: _nameController,
-              decoration: new InputDecoration.collapsed(hintText: "Name"),
+              decoration: InputDecoration.collapsed(hintText: "Name"),
               keyboardType: TextInputType.text,
               style: Theme.of(context).textTheme.body2.copyWith(
                 fontSize: 16.0,
               ),
             ),
-          ) : new Container(height: 0.0),
+          ) : Container(height: 0.0),
         ),
-        new Container(
-          child: new Container(
+        Container(
+          child: Container(
             alignment: Alignment.center,
             padding: const EdgeInsets.symmetric(horizontal: 8.0),
             margin: const EdgeInsets.only(bottom: 8.0),
             height: fieldHeight,
             decoration: outlineDecoration(context),
-            child: new TextFormField(
+            child: TextFormField(
               focusNode: _focusNodeEmail,
               controller: _emailController,
-              decoration: new InputDecoration.collapsed(hintText: "Email"),
+              decoration: InputDecoration.collapsed(hintText: "Email"),
               keyboardType: TextInputType.emailAddress,
               style: Theme.of(context).textTheme.body2.copyWith(
                 fontSize: 16.0,
@@ -225,17 +225,17 @@ class _LoginPageState extends State<LoginPage> {
             ),
           ),
         ),
-        new Container(
-          child: new Container(
+        Container(
+          child: Container(
             alignment: Alignment.center,
             padding: const EdgeInsets.symmetric(horizontal: 8.0),
             margin: const EdgeInsets.only(bottom: 8.0),
             height: fieldHeight,
             decoration: outlineDecoration(context),
-            child: new TextFormField(
+            child: TextFormField(
               focusNode: _focusNodePass,
               controller: _passController,
-              decoration: new InputDecoration.collapsed(hintText: "Password"),
+              decoration: InputDecoration.collapsed(hintText: "Password"),
               obscureText: true,
               autocorrect: false,
               keyboardType: TextInputType.text,
@@ -245,17 +245,17 @@ class _LoginPageState extends State<LoginPage> {
             ),
           ),
         ),
-        new Container(
-          child: signUp ? new Container(
+        Container(
+          child: signUp ? Container(
             alignment: Alignment.center,
             padding: const EdgeInsets.symmetric(horizontal: 8.0),
             margin: const EdgeInsets.only(bottom: 8.0),
             height: fieldHeight,
             decoration: outlineDecoration(context),
-            child: new TextFormField(
+            child: TextFormField(
               focusNode: _focusNodeConfirmPass,
               controller: _confirmPassController,
-              decoration: new InputDecoration.collapsed(hintText: "Confirm Password"),
+              decoration: InputDecoration.collapsed(hintText: "Confirm Password"),
               obscureText: true,
               autocorrect: false,
               keyboardType: TextInputType.text,
@@ -263,13 +263,13 @@ class _LoginPageState extends State<LoginPage> {
                 fontSize: 16.0,
               ),
             ),
-          ) : new Container(height: 0.0),
+          ) : Container(height: 0.0),
         ),
-        errorMessage.isNotEmpty ? new Container(
+        errorMessage.isNotEmpty ? Container(
           margin: const EdgeInsets.only(bottom: 8.0),
           height: 16.0,
-          child: new RichText(
-            text: new TextSpan(
+          child: RichText(
+            text: TextSpan(
               text: errorMessage,
               style: Theme.of(context).textTheme.body2.copyWith(
                   fontSize: 14.0,
@@ -277,26 +277,26 @@ class _LoginPageState extends State<LoginPage> {
               ),
             ),
           ),
-        ) : new Container(height: 8.0),
-        new Container(
+        ) : Container(height: 8.0),
+        Container(
           height: 40.0,
-          child: new FlatButton(
+          child: FlatButton(
             onPressed: _confirmPressed,
-            child: new Text(signUp ? 'SIGN UP' : 'LOGIN'),
+            child: Text(signUp ? 'SIGN UP' : 'LOGIN'),
           ),
           decoration: outlineDecoration(context),
         ),
-        new Divider(height: 32.0,),
-        new Row(
+        Divider(height: 32.0,),
+        Row(
           children: <Widget>[
-            new Expanded(
-              child: new Container(
+            Expanded(
+              child: Container(
                 child: googleButton(),
                 padding: EdgeInsets.symmetric(horizontal: 8.0),
               ),
             ),
-            /*new Expanded(
-              child: new Container(
+            /*Expanded(
+              child: Container(
                 child: facebookButton(),
                 padding: EdgeInsets.symmetric(horizontal: 8.0),
               ),
@@ -310,14 +310,14 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
 
-    return new WillPopScope(
+    return WillPopScope(
       onWillPop: () async {
         Navigator.of(context).pop();
         return false;
       },
-      child: new Scaffold(
-        body: new SafeArea(
-          child: new Stack(
+      child: Scaffold(
+        body: SafeArea(
+          child: Stack(
             children: <Widget>[
               Column(
                 children: <Widget>[
@@ -346,7 +346,7 @@ class _LoginPageState extends State<LoginPage> {
     var pass = _passController.text;
     var confirmPass = _confirmPassController.text;
 
-    RegExp exp = new RegExp(p);
+    RegExp exp = RegExp(p);
     if(!exp.hasMatch(email)) {
       setState(() => errorMessage = 'Email address is invalid');
       return;
@@ -368,7 +368,7 @@ class _LoginPageState extends State<LoginPage> {
     _confirmPassController.clear();
 
     Navigator.of(context).push(
-        new FadeAnimationRoute(builder: (context) => LoadingScreen(
+        FadeAnimationRoute(builder: (context) => LoadingScreen(
           SignInMethod.email,
           email: email,
           password: pass,
@@ -380,7 +380,7 @@ class _LoginPageState extends State<LoginPage> {
       if(onValue == true) {
         Navigator.of(context).pop();
         Navigator.of(context).push(
-            new FadeAnimationRoute(builder: (context) => widget.nextPage)
+            FadeAnimationRoute(builder: (context) => widget.nextPage)
         );
       }
     });
@@ -401,20 +401,20 @@ class LoadingScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
-      body: new Center(
-        child: new FutureBuilder<FirebaseUser>(
+    return Scaffold(
+      body: Center(
+        child: FutureBuilder<FirebaseUser>(
           future: auth.signInMethod(method, email: email, password: password, signUp: signUp, name: name),
           builder: (BuildContext context, AsyncSnapshot<FirebaseUser> snapshot) {
             switch(snapshot.connectionState) {
               case ConnectionState.waiting:
-                return new CircularProgressIndicator();
+                return CircularProgressIndicator();
               default:
                 if(snapshot.hasError) {
-                  return new Text('Error: ${snapshot.error}');
+                  return Text('Error: ${snapshot.error}');
                 } else {
                   Navigator.pop(context, true);
-                  return new Container();
+                  return Container();
                 }
             }
           },

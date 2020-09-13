@@ -1,18 +1,21 @@
 import 'package:flutter/material.dart';
 
-class FadeAnimationRoute<T> extends MaterialPageRoute<T> {
-  FadeAnimationRoute({
-    WidgetBuilder builder,
-    RouteSettings settings
-  }) : super(builder: builder, settings: settings);
+Route FadeAnimationRoute({WidgetBuilder builder}) {
+  return PageRouteBuilder(
+    pageBuilder: (context, animation, secondaryAnimation) => Builder(builder: builder),
+    transitionsBuilder: (context, animation, secondaryAnimation, child) {
+      return FadeTransition(opacity: animation, child: child);
+    },
+  );
+}
 
-  @override
-  Widget buildTransitions(BuildContext context,
-      Animation<double> animation,
-      Animation<double> secondaryAnimation,
-      Widget child) {
-    if (settings.isInitialRoute)
-      return child;
-    return new FadeTransition(opacity: animation, child: child);
-  }
+
+
+Route fadeAnimationRoute({Widget child}) {
+  return PageRouteBuilder(
+    pageBuilder: (context, animation, secondaryAnimation) => child,
+    transitionsBuilder: (context, animation, secondaryAnimation, child) {
+      return FadeTransition(opacity: animation, child: child);
+    },
+  );
 }
